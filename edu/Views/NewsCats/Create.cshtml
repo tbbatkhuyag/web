@@ -1,0 +1,64 @@
+﻿@model edu.Models.NewsCat
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layoutadmin.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>NewsCat</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Txtname" class="control-label"></label>
+                <input asp-for="Txtname" class="form-control" />
+                <span asp-validation-for="Txtname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vis" class="control-label"></label>
+                <input asp-for="Vis" class="form-control" />
+                <span asp-validation-for="Vis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TxtOrd" class="control-label"></label>
+                <input asp-for="TxtOrd" class="form-control" />
+                <span asp-validation-for="TxtOrd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubId" class="control-label"></label>
+                <input asp-for="SubId" class="form-control" />
+                <span asp-validation-for="SubId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Txtmore" class="control-label"></label>
+                <input asp-for="Txtmore" class="form-control" />
+                <span asp-validation-for="Txtmore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Txtcontent" class="control-label"></label>
+                <input asp-for="Txtcontent" class="form-control" />
+                <span asp-validation-for="Txtcontent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TxtDate" class="control-label"></label>
+                <input asp-for="TxtDate" class="form-control" />
+                <span asp-validation-for="TxtDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
