@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Багш";
+    Layout = "~/Views/Shared/_Layoutteacher.cshtml";
+}
+@model edu.Models.User
+<div class="settings-inner-blk p-0">
+    <div class="sell-course-head student-meet-head comman-space border-0">
+        <div class="tak-head d-flex align-items-center">
+            <div>
+                <h3>Students</h3>
+                <p>Meet people taking your course.</p>
+            </div>
+            <div class="view-icons">
+                <a href="instructor-student-grid.html" class="grid-view active"><i class="feather-grid"></i></a>
+                <a href="instructor-student-list.html" class="list-view"><i class="feather-list"></i></a>
+            </div>
+        </div>
+        <form>
+            <div class="student-search-form d-flex ">
+                <div class="input-block mb-0">
+                    <input type="text" class="form-control" placeholder="Twitter Profile Name">
+                </div>
+                <div class="export-cvv-btn">
+                    <button class="btn btn-primary">Export CSV</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

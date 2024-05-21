@@ -1,0 +1,113 @@
+﻿@model edu.Models.NewsList
+@inject edu_portal_dbContext Contex
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layoutadmin.cshtml";
+    var txtname = Contex.NewsCats.SingleOrDefault(vs => vs.Id == Int32.Parse(ViewData["newsid"].ToString())).Txtname;
+}
+
+<h1>@txtname</h1>
+
+<h4>NewsList</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Txtname" class="control-label"></label>
+                <input asp-for="Txtname" class="form-control" />
+                <span asp-validation-for="Txtname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Txtmore" class="control-label"></label>
+
+                @(Html.Kendo().Editor()
+                    .Name("Txtmore")
+                    .HtmlAttributes(new { style = "width: 100%; height:300px" })
+                    .StyleSheets(css => css
+                    .Add(Url.Content("~/shared/web/editor/editorStyles.css"))
+                    )
+                    .Tools(tools => tools
+                    .Clear()
+                    .Bold().Italic().Underline()
+                    .JustifyLeft().JustifyCenter().JustifyRight()
+                    .InsertUnorderedList().InsertOrderedList()
+                    .Outdent().Indent()
+                    .CreateLink().Unlink()
+                    .InsertImage()
+                    .TableEditing()
+                    .FontName()
+                    .FontSize()
+                    .ForeColor().BackColor()
+                    )
+                    .ImageBrowser(imageBrowser => imageBrowser
+                    .Image("~/shared/UserFiles/images/{0}")
+                    .Read("Read", "ImageBrowser")
+                    .Create("Create", "ImageBrowser")
+                    .Destroy("Destroy", "ImageBrowser")
+                    .Upload("Upload", "ImageBrowser")
+                    )
+                    )
+                <span asp-validation-for="Txtmore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Txtcontent" class="control-label"></label>
+
+                @(Html.Kendo().Editor()
+                    .Name("Txtcontent")
+                    .HtmlAttributes(new { style = "width: 100%; height:300px" })
+                    .StyleSheets(css => css
+                    .Add(Url.Content("~/shared/web/editor/editorStyles.css"))
+                    )
+                    .Tools(tools => tools
+                    .Clear()
+                    .Bold().Italic().Underline()
+                    .JustifyLeft().JustifyCenter().JustifyRight()
+                    .InsertUnorderedList().InsertOrderedList()
+                    .Outdent().Indent()
+                    .CreateLink().Unlink()
+                    .InsertImage()
+                    .TableEditing()
+                    .FontName()
+                    .FontSize()
+                    .ForeColor().BackColor()
+                    )
+                    .ImageBrowser(imageBrowser => imageBrowser
+                    .Image("~/shared/UserFiles/images/{0}")
+                    .Read("Read", "ImageBrowser")
+                    .Create("Create", "ImageBrowser")
+                    .Destroy("Destroy", "ImageBrowser")
+                    .Upload("Upload", "ImageBrowser")
+                    )
+                    )
+                <span asp-validation-for="Txtcontent" class="text-danger"></span>
+            </div>
+          @*   <div class="form-group">
+                <label asp-for="Txtdate" class="control-label"></label>
+                <input asp-for="Txtdate" class="form-control" />
+                <span asp-validation-for="Txtdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatId" class="control-label"></label>
+                <select asp-for="CatId" class ="form-control" asp-items="ViewBag.CatId"></select>
+            </div> *@
+           @*  <div class="form-group">
+                <label asp-for="Txtdatetime" class="control-label"></label>
+                <input asp-for="Txtdatetime" class="form-control" />
+                <span asp-validation-for="Txtdatetime" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

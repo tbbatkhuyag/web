@@ -11,17 +11,21 @@ public partial class NewsCat
 
     public string Txtname { get; set; }
 
-    public long? Vis { get; set; }
-
     public int? TxtOrd { get; set; }
-
-    public int? SubId { get; set; }
 
     public string Txtmore { get; set; }
 
     public string Txtcontent { get; set; }
 
+    public int? SubId { get; set; }
+
     public DateTime? TxtDate { get; set; }
+
+    public int? Txttype { get; set; }
+
+    public string Txtlink { get; set; }
+
+    public long? Vis { get; set; }
 
     public virtual ICollection<NewsList> NewsLists { get; set; } = new List<NewsList>();
 }

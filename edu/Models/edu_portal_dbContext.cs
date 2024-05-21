@@ -30,7 +30,6 @@ public partial class edu_portal_dbContext : DbContext
     public virtual DbSet<University> Universities { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -40,6 +39,7 @@ public partial class edu_portal_dbContext : DbContext
             .Build();
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<CourseList>(entity =>
@@ -150,12 +150,14 @@ public partial class edu_portal_dbContext : DbContext
             entity.Property(e => e.Txtcontent)
                 .HasColumnType("ntext")
                 .HasColumnName("txtcontent");
+            entity.Property(e => e.Txtlink).HasColumnName("txtlink");
             entity.Property(e => e.Txtmore)
                 .HasColumnType("ntext")
                 .HasColumnName("txtmore");
             entity.Property(e => e.Txtname)
                 .HasMaxLength(50)
                 .HasColumnName("txtname");
+            entity.Property(e => e.Txttype).HasColumnName("txttype");
             entity.Property(e => e.Vis).HasColumnName("vis");
         });
 

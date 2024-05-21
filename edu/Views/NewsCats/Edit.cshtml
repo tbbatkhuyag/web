@@ -5,12 +5,44 @@
     Layout = "~/Views/Shared/_Layoutadmin.cshtml";
 }
 
-<h1>Edit</h1>
+       
+@try{
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-primary" href="~/NewsCats/createsub?sid=@Url.ActionContext.RouteData.Values["id"]">ДЭД КАТЕГОРИ</a>
+            </div>
+            <div class="col ">
+                @if (ViewData["txtype"].ToString() == "4")
+                {
+                    <div class="form-group">
+                        <a class="btn btn-primary" href="~/NewsLists/index?sid=@Url.ActionContext.RouteData.Values["id"]">ЖАГСААЛТ АГУУЛГА ОРУУЛАХ</a>
+                    </div>
 
-<h4>NewsCat</h4>
+                }
+          
+                @if (ViewData["txtype"].ToString() == "1")
+                {
+                    <div class="form-group">
+                        <a class="btn btn-primary" href="~/NewsCats/HOME?sid=@Url.ActionContext.RouteData.Values["id"]">НҮҮР</a>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+       
+      
+}
+catch (Exception ex)
+{
+
+}
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
@@ -20,9 +52,14 @@
                 <span asp-validation-for="Txtname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Vis" class="control-label"></label>
-                <input asp-for="Vis" class="form-control" />
-                <span asp-validation-for="Vis" class="text-danger"></span>
+            <label asp-for="Txttype" class="control-label"></label>
+                <select id="Txttype" asp-for="Txttype" name="Txttype" class="form-control">
+                        <option value="1">Нүүр</option>
+                        <option value="2">Агуулга</option>
+                        <option value="3">Холбоос</option>
+                        <option value="4">Жагсаалт</option>
+                    </select>
+                    <span asp-validation-for="Txttype" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TxtOrd" class="control-label"></label>
@@ -30,25 +67,106 @@
                 <span asp-validation-for="TxtOrd" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SubId" class="control-label"></label>
-                <input asp-for="SubId" class="form-control" />
-                <span asp-validation-for="SubId" class="text-danger"></span>
+                <label asp-for="Vis" class="control-label"></label>
+                <select id="Vis" asp-for="Vis" name="Txttype" class="form-control">
+                    <option value="1">НУУХ</option>
+                    <option value="2">НЭЭХ</option>
+                </select>
+                <span asp-validation-for="Vis" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Txtmore" class="control-label"></label>
-                <input asp-for="Txtmore" class="form-control" />
-                <span asp-validation-for="Txtmore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Txtcontent" class="control-label"></label>
-                <input asp-for="Txtcontent" class="form-control" />
-                <span asp-validation-for="Txtcontent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            @try{
+                @if (ViewData["txtype"].ToString() == "3")
+                {
+                    <div class="form-group">
+                        <label asp-for="Txtlink" class="control-label"></label>
+                        <input asp-for="Txtlink" class="form-control" />
+                        <span asp-validation-for="Txtlink" class="text-danger"></span>
+                    </div>
+
+                }
+                @if (ViewData["txtype"].ToString() == "2")
+                {
+                    <div class="form-group">
+                        <label asp-for="Txtmore" class="control-label"></label>
+                     @*    <input asp-for="Txtmore" class="form-control" /> *@
+
+                            @(Html.Kendo().Editor()
+                                .Name("Txtmore")
+                                .HtmlAttributes(new { style = "width: 100%; height:300px" })
+                                .StyleSheets(css => css
+                                .Add(Url.Content("~/shared/web/editor/editorStyles.css"))
+                                )
+                                .Tools(tools => tools
+                                .Clear()
+                                .Bold().Italic().Underline()
+                                .JustifyLeft().JustifyCenter().JustifyRight()
+                                .InsertUnorderedList().InsertOrderedList()
+                                .Outdent().Indent()
+                                .CreateLink().Unlink()
+                                .InsertImage()
+                                .TableEditing()
+                                .FontName()
+                                .FontSize()
+                                .ForeColor().BackColor()
+                                )
+                                .ImageBrowser(imageBrowser => imageBrowser
+                                .Image("~/shared/UserFiles/images/{0}")
+                                .Read("Read", "ImageBrowser")
+                                .Create("Create", "ImageBrowser")
+                                .Destroy("Destroy", "ImageBrowser")
+                                .Upload("Upload", "ImageBrowser")
+                            ).Value(ViewBag.Txtmore)
+                                )
+                        
+
+
+                        <span asp-validation-for="Txtmore" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Txtcontent" class="control-label"></label>
+
+                        @(Html.Kendo().Editor()
+                            .Name("Txtcontent")
+                            .HtmlAttributes(new { style = "width: 100%; height:300px" })
+                            .StyleSheets(css => css
+                            .Add(Url.Content("~/shared/web/editor/editorStyles.css"))
+                            )
+                            .Tools(tools => tools
+                            .Clear()
+                            .Bold().Italic().Underline()
+                            .JustifyLeft().JustifyCenter().JustifyRight()
+                            .InsertUnorderedList().InsertOrderedList()
+                            .Outdent().Indent()
+                            .CreateLink().Unlink()
+                            .InsertImage()
+                            .TableEditing()
+                            .FontName()
+                            .FontSize()
+                            .ForeColor().BackColor()
+                            )
+                            .ImageBrowser(imageBrowser => imageBrowser
+                            .Image("~/shared/UserFiles/images/{0}")
+                            .Read("Read", "ImageBrowser")
+                            .Create("Create", "ImageBrowser")
+                            .Destroy("Destroy", "ImageBrowser")
+                            .Upload("Upload", "ImageBrowser")
+                            ).Value(ViewBag.Txtcontent)
+                            )
+
+                        <span asp-validation-for="Txtcontent" class="text-danger"></span>
+                    </div>
+                }
+              
+            }catch(Exception ex){
+
+            }
+           
+           
+         @*    <div class="form-group">
                 <label asp-for="TxtDate" class="control-label"></label>
                 <input asp-for="TxtDate" class="form-control" />
                 <span asp-validation-for="TxtDate" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

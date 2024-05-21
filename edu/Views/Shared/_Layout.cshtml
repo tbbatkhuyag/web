@@ -1,43 +1,71 @@
-﻿<!DOCTYPE html>
+﻿@using edu.Views.Shared
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Dreams LMS</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/template/html/assets/img/favicon.svg">
+
+    <link rel="stylesheet" href="~/template/html/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/template/html/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/template/html/assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="~/template/html/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/template/html/assets/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="~/template/html/assets/plugins/slick/slick.css">
+    <link rel="stylesheet" href="~/template/html/assets/plugins/slick/slick-theme.css">
+
+    <link rel="stylesheet" href="~/template/html/assets/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="~/template/html/assets/plugins/aos/aos.css">
+
+    <link rel="stylesheet" href="~/template/html/assets/css/style.css">
+
     <title>@ViewData["Title"] - edu</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+@*     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-	<link href="https://cdn.kendostatic.com/2022.1.119/styles/kendo.default-nordic.min.css" rel="stylesheet" type="text/css" />
-	<script src="https://cdn.kendostatic.com/2022.1.119/js/jquery.min.js"></script>
-	<script src="https://cdn.kendostatic.com/2022.1.119/js/jszip.min.js"></script>
-	<script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.all.min.js"></script>
-	<script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.aspnetmvc.min.js"></script>
+    <link href="https://cdn.kendostatic.com/2022.1.119/styles/kendo.default-nordic.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.kendostatic.com/2022.1.119/js/jquery.min.js"></script>
+    <script src="https://cdn.kendostatic.com/2022.1.119/js/jszip.min.js"></script>
+    <script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.all.min.js"></script>
+    <script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.aspnetmvc.min.js"></script> *@
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">edu</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav>
-    </header>
-    <div>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - edu
-        </div>
-    </footer>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    @RenderBody()
+
+@* 
+    <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> *@
+    <script src="~/template/html/assets/js/jquery-3.7.1.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+
+    <script src="~/template/html/assets/js/bootstrap.bundle.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+
+    <script src="~/template/html/assets/js/jquery.waypoints.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+    <script src="~/template/html/assets/js/jquery.counterup.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+
+    <script src="~/template/html/assets/plugins/select2/js/select2.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+
+    <script src="~/template/html/assets/js/owl.carousel.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+
+    <script src="~/template/html/assets/plugins/slick/slick.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+
+    <script src="~/template/html/assets/plugins/aos/aos.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+
+    <script src="~/template/html/assets/js/script.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+    <script src="~/template/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer=""></script>
+
+    @* <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer="">
+     *@    
+    
+    </script>
 </body>
+
+@RenderSection("Scripts", required: false)
 </html>

@@ -29,6 +29,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\NewsCats1Controller.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\template\css2" />
+    <Content Remove="wwwroot\template\css2-1" />
+    <Content Remove="wwwroot\template\css2-2" />
+    <Content Remove="wwwroot\template\css2-3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Student\view-invoice.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Student\view-invoice.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\tb\.vs\VSWorkspaceState.json" />
   </ItemGroup>
 
@@ -327,6 +346,171 @@
     <None Include="wwwroot\tb\app-assets\vendors\js\ui\jquery.sticky.js" />
     <None Include="wwwroot\tb\app-assets\vendors\js\ui\prism.min.js" />
     <None Include="wwwroot\tb\app-assets\vendors\js\vendors.min.js" />
+    <None Include="wwwroot\template\cdn-cgi\scripts\5c5dd728\cloudflare-static\email-decode.min.js" />
+    <None Include="wwwroot\template\cdn-cgi\scripts\7d0fa10a\cloudflare-static\rocket-loader.min.js" />
+    <None Include="wwwroot\template\css2" />
+    <None Include="wwwroot\template\css2-1" />
+    <None Include="wwwroot\template\css2-2" />
+    <None Include="wwwroot\template\css2-3" />
+    <None Include="wwwroot\template\html\assets\fonts\Feather.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\banner-vector.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\footer-left.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\footer-right.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\instructor-vector-left.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\instructor-vector-right.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\master-vector-left.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\pattern-05.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\pattern-06.svg" />
+    <None Include="wwwroot\template\html\assets\img\bg\quote.svg" />
+    <None Include="wwwroot\template\html\assets\img\category\category-1.svg" />
+    <None Include="wwwroot\template\html\assets\img\category\category-2.svg" />
+    <None Include="wwwroot\template\html\assets\img\category\category-3.svg" />
+    <None Include="wwwroot\template\html\assets\img\category\category-4.svg" />
+    <None Include="wwwroot\template\html\assets\img\category\category-5.svg" />
+    <None Include="wwwroot\template\html\assets\img\category\category-6.svg" />
+    <None Include="wwwroot\template\html\assets\img\category\category-7.svg" />
+    <None Include="wwwroot\template\html\assets\img\category\category-8.svg" />
+    <None Include="wwwroot\template\html\assets\img\certificate-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\client\client-01.svg" />
+    <None Include="wwwroot\template\html\assets\img\client\client-02.svg" />
+    <None Include="wwwroot\template\html\assets\img\client\client-03.svg" />
+    <None Include="wwwroot\template\html\assets\img\client\client-04.svg" />
+    <None Include="wwwroot\template\html\assets\img\client\client-05.svg" />
+    <None Include="wwwroot\template\html\assets\img\cources-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\course\course-01.svg" />
+    <None Include="wwwroot\template\html\assets\img\course\course-02.svg" />
+    <None Include="wwwroot\template\html\assets\img\course\course-03.svg" />
+    <None Include="wwwroot\template\html\assets\img\course\course-04.svg" />
+    <None Include="wwwroot\template\html\assets\img\favicon.svg" />
+    <None Include="wwwroot\template\html\assets\img\gratuate-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\award.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\building.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\career-01.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\career-02.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\career-03.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\career-04.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\check-round-1.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\check-round-2.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\check-round-3.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\course-01.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\course-02.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\course-03.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\course-04.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\ellipse-1.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\ellipse-2.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\ellipse-3.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\email.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\search-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\student-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\student.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\time.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon-three\winning.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\award-new.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\cart.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\chapter.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\chart.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\check-circle.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\close-circle.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\cloud.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\count-four.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\count-one.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\count-three.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\count-two.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\home-search-six.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-01.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-02.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-07.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-08.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-09.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-1.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-10.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-12.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-13.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-14.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-15.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-16.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-17.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-18.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-19.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-2.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-20.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-21.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-22.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-23.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-24.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-25.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-26.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-27.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-3.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\icon-4.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\import.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\joing-01.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\joing-02.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\joing-03.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\joing-04.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\key.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\lock.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\message-text.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\messages.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\mobile.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\notification.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\people.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\play-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\play.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\teacher.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\timer-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\timer-start.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\timer.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\user-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\users.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\video.svg" />
+    <None Include="wwwroot\template\html\assets\img\icon\wish.svg" />
+    <None Include="wwwroot\template\html\assets\img\logo.svg" />
+    <None Include="wwwroot\template\html\assets\img\logo\logo-five.svg" />
+    <None Include="wwwroot\template\html\assets\img\logo\logo.svg" />
+    <None Include="wwwroot\template\html\assets\img\pencil-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\send-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\skills\skills-01.svg" />
+    <None Include="wwwroot\template\html\assets\img\skills\skills-02.svg" />
+    <None Include="wwwroot\template\html\assets\img\skills\skills-03.svg" />
+    <None Include="wwwroot\template\html\assets\img\skills\skills-04.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\book.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\empty-wallet-change.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\empty-wallet-tick.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\loc-icon.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\profile-user.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\receipt-text.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\ticket-close.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\ticket-open.svg" />
+    <None Include="wwwroot\template\html\assets\img\students\ticket-total.svg" />
+    <None Include="wwwroot\template\html\assets\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\template\html\assets\js\ckeditor.js" />
+    <None Include="wwwroot\template\html\assets\js\jquery-3.7.1.min.js" />
+    <None Include="wwwroot\template\html\assets\js\jquery.counterup.min.js" />
+    <None Include="wwwroot\template\html\assets\js\jquery.waypoints.js" />
+    <None Include="wwwroot\template\html\assets\js\owl.carousel.min.js" />
+    <None Include="wwwroot\template\html\assets\js\script.js" />
+    <None Include="wwwroot\template\html\assets\js\validation.js" />
+    <None Include="wwwroot\template\html\assets\plugins\aos\aos.js" />
+    <None Include="wwwroot\template\html\assets\plugins\apexchart\apexcharts.min.js" />
+    <None Include="wwwroot\template\html\assets\plugins\apexchart\chart-data.js" />
+    <None Include="wwwroot\template\html\assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.js" />
+    <None Include="wwwroot\template\html\assets\plugins\dropzone\dropzone.min.js" />
+    <None Include="wwwroot\template\html\assets\plugins\feather\feather.min.js" />
+    <None Include="wwwroot\template\html\assets\plugins\feather\fonts\Feather.svg" />
+    <None Include="wwwroot\template\html\assets\plugins\fontawesome\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\template\html\assets\plugins\fontawesome\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\template\html\assets\plugins\fontawesome\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\template\html\assets\plugins\fontawesome\webfonts\fa-v4compatibility.woff2" />
+    <None Include="wwwroot\template\html\assets\plugins\select2\js\select2.min.js" />
+    <None Include="wwwroot\template\html\assets\plugins\slick\slick.js" />
+    <None Include="wwwroot\template\html\assets\plugins\swiper\js\swiper.min.js" />
+    <None Include="wwwroot\template\html\assets\plugins\theia-sticky-sidebar\ResizeSensor.js" />
+    <None Include="wwwroot\template\html\assets\plugins\theia-sticky-sidebar\theia-sticky-sidebar.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties UseCdnSupport="" /></VisualStudio></ProjectExtensions>

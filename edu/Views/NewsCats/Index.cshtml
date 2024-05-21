@@ -1,72 +1,98 @@
 ﻿@model IEnumerable<edu.Models.NewsCat>
-
+@inject edu_portal_dbContext Contex
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layoutadmin.cshtml";
 }
 
-<h1>Index</h1>
+
+
+<h1>КАТЕГОРИ</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Txtname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vis)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TxtOrd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Txtmore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Txtcontent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TxtDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Txtname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TxtOrd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Txtmore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Txtcontent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TxtDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<ul>
+@foreach (var todo in Contex.NewsCats.Where(vs => vs.SubId == null).OrderBy(vs => vs.TxtOrd))
+{
+
+    <li>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="/NewsCats/Edit/@todo.Id">
+                       @todo.Txtname
+                    </a>
+                </div>
+                    <div class="col pull-right">
+                    <a asp-action="Edit" asp-route-id="@todo.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@todo.Id">Delete</a>
+                </div>
+             
+            </div>
+            </div><hr />
+        <ul>
+
+
+            @foreach (var to in Contex.NewsCats.Where(vs => vs.SubId == todo.Id).OrderBy(vs => vs.TxtOrd))
+            {
+
+                <li>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <a href="/NewsCats/Edit/@to.Id">
+                                    
+                                    @to.Txtname
+                                </a>
+                            </div>
+                                <div class="col pull-right">
+                                <a asp-action="Edit" asp-route-id="@to.Id">Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@to.Id">Delete</a>
+                            </div>
+
+                        </div>
+                    </div><hr />
+                    <ul>
+
+
+                        @foreach (var t in Contex.NewsCats.Where(vs => vs.SubId == to.Id).OrderBy(vs => vs.TxtOrd))
+                        {
+
+                            <li>
+                             
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="/NewsCats/Edit/@t.Id">
+                                              @t.Txtname
+                                            </a>
+                                        </div>
+                                        <div class="col pull-right">
+                                            <a asp-action="Edit" asp-route-id="@t.Id">Edit</a> |
+                                            <a asp-action="Delete" asp-route-id="@t.Id">Delete</a>
+                                        </div>
+
+                                    </div>
+                                    </div><hr />
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    </li>
 }
-    </tbody>
-</table>
+</ul>
+
+
+
+
+
+
+
+
+        
+
+        
