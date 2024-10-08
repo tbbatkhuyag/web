@@ -3,17 +3,20 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class CourseName
+namespace edu.Models
 {
-    public int Id { get; set; }
+    public partial class CourseName
+    {
+        public CourseName()
+        {
+            CourseLists = new HashSet<CourseList>();
+        }
 
-    public string Logo { get; set; }
+        public int Id { get; set; }
+        public string Logo { get; set; }
+        public string Name { get; set; }
+        public string Txtmore { get; set; }
 
-    public string Name { get; set; }
-
-    public string Txtmore { get; set; }
-
-    public virtual ICollection<CourseList> CourseLists { get; set; } = new List<CourseList>();
+        public virtual ICollection<CourseList> CourseLists { get; set; }
+    }
 }

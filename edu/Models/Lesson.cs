@@ -3,23 +3,20 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class Lesson
+namespace edu.Models
 {
-    public int Id { get; set; }
-
-    public string Name { get; set; }
-
-    public string ViewMinut { get; set; }
-
-    public string Txtmore { get; set; }
-
-    public string Txtcontent { get; set; }
-
-    public int? GId { get; set; }
-
-    public int? TeacherId { get; set; }
-
-    public virtual GroupLesson GIdNavigation { get; set; }
+    public partial class Lesson
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int? ViewMinut { get; set; }
+        public string Txtmore { get; set; }
+        public string Txtcontent { get; set; }
+        public string Txtvoice { get; set; }
+        public string Txtvideo { get; set; }
+        public string Txtwork { get; set; }
+        public int? GId { get; set; }
+        public int? TeacherId { get; set; }
+        public DateTime? CreateDate { get; set; }
+    }
 }

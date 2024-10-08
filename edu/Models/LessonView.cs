@@ -3,19 +3,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class LessonView
+namespace edu.Models
 {
-    public int Id { get; set; }
-
-    public int? LesId { get; set; }
-
-    public string StartDate { get; set; }
-
-    public string EndDate { get; set; }
-
-    public int? ViewMinut { get; set; }
-
-    public string ContentType { get; set; }
+    public partial class LessonView
+    {
+        public int Id { get; set; }
+        public int? LesId { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        public int? ViewMinut { get; set; }
+        public string ContentType { get; set; }
+    }
 }

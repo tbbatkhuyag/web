@@ -3,23 +3,18 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class NewsList
+namespace edu.Models
 {
-    public int Id { get; set; }
+    public partial class NewsList
+    {
+        public int Id { get; set; }
+        public string Txtname { get; set; }
+        public string Txtmore { get; set; }
+        public string Txtcontent { get; set; }
+        public string Txtdate { get; set; }
+        public int? CatId { get; set; }
+        public DateTime? Txtdatetime { get; set; }
 
-    public string Txtname { get; set; }
-
-    public string Txtmore { get; set; }
-
-    public string Txtcontent { get; set; }
-
-    public string Txtdate { get; set; }
-
-    public int? CatId { get; set; }
-
-    public DateTime? Txtdatetime { get; set; }
-
-    public virtual NewsCat Cat { get; set; }
+        public virtual NewsCat Cat { get; set; }
+    }
 }

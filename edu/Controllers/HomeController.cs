@@ -58,53 +58,67 @@ namespace edu.Controllers
             try
             {
                 var userdata = _context.Users.First(vs => vs.Username == _user.Username);
-            if (userdata != null && VerifyPassword(_user.Userpass,userdata.Userpass))
-            {
-                    string rol = userdata.Rolename == null ? "user" : userdata.Rolename;
+                if (userdata != null && VerifyPassword(_user.Userpass,userdata.Userpass))
+                {
+                        string rol = userdata.Rolename == null ? "user" : userdata.Rolename;
 
 
-                        var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, _user.Username.ToString()),
-                        new Claim(ClaimTypes.Role,  rol),
-                        // Add any additional claims as needed
-                    };
-                   
+                            var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, _user.Username.ToString()),
+                            new Claim(ClaimTypes.Role,  rol),
+                            new Claim(ClaimTypes.Dns,  userdata.Id.ToString()),
+                            // Add any additional claims as needed
+                        };
+
                     // Create claims for authentication
-                  
+                    try
+                    {
+                        var directoryInfo = new DirectoryInfo("C:\\Users\\Newtech\\source\\repos\\edu\\edu\\wwwroot\\Shared\\UserFiles\\images\\");
+
+                        if (directoryInfo.Exists)
+                        {
+                            directoryInfo.CreateSubdirectory(_user.Username.ToString());
+                        }
+                    }catch(Exception ex)
+                    {
+
+                    }
+                   
+
 
                     var claimsIdentity = new ClaimsIdentity(
-                        claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    var authProperties = new AuthenticationProperties
-                    {
-                        // Customize authentication properties if needed
-                        ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-                        IsPersistent = true
-                    };
+                        var authProperties = new AuthenticationProperties
+                        {
+                            // Customize authentication properties if needed
+                            ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
+                            IsPersistent = true
+                        };
 
-                    await HttpContext.SignInAsync(
-                          CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),
-                          authProperties);
-                    if (userdata.Rolename == "admin")
-                    {
-                        return RedirectToAction("index","newscats");
-                    }
-                    if (userdata.Rolename == "teacher")
-                    {
-                        return RedirectToAction("teacher", "home");
-                    }
-                    if (userdata.Rolename == null)
-                    {
-                         return RedirectToAction("student", "home");
-                    }
+                        await HttpContext.SignInAsync(
+                              CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),
+                              authProperties);
+                        if (userdata.Rolename == "admin")
+                        {
+                            return RedirectToAction("index","newscats");
+                        }
+                        if (userdata.Rolename == "teacher")
+                        {
+                            return RedirectToAction("index", "GroupLessons");
+                        }
+                        if (userdata.Rolename == null )
+                        {
+                             return RedirectToAction("indexstudent", "GroupLessons");
+                        }
 
               
                
-            }   
-            else
-            {
-                ViewBag.err = "и-мэйл хаяг эсвэл нууц үг буруу !!!";
+                }   
+                else
+                {
+                    ViewBag.err = "и-мэйл хаяг эсвэл нууц үг буруу !!!";
            }
         }
             catch (Exception ex) {

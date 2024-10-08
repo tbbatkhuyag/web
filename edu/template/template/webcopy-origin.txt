@@ -1890,8 +1890,8 @@ Uri: https://dreamslms.dreamstechnologies.com/html/index-two.html
 File Name: C:\Downloaded Web Sites\dreamslms.dreamstechnologies.com\html\index-two.html
 Content Type: text/html
 
-Uri: https://dreamslms.dreamstechnologies.com/html/index.html
-File Name: C:\Downloaded Web Sites\dreamslms.dreamstechnologies.com\html\index.html
+Uri: https://dreamslms.dreamstechnologies.com/html/~/home/index
+File Name: C:\Downloaded Web Sites\dreamslms.dreamstechnologies.com\html\~/home/index
 Content Type: text/html
 
 Uri: https://dreamslms.dreamstechnologies.com/html/instructor-chat.html

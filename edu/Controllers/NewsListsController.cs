@@ -34,9 +34,36 @@ namespace edu.Controllers
             var edu_portal_dbContext = _context.NewsLists.Where(v=>v.CatId ==sid).Include(n => n.Cat);
             return View(await edu_portal_dbContext.ToListAsync());
         }
+        public async Task<IActionResult> list(int? id)
+        {
+            if (id != null && id != 0)
+            {
+                TempData["newsid"] = id;
+                ViewData["newsid"] = id;
+            }
+            var edu_portal_dbContext = _context.NewsLists.Where(v => v.CatId == id).Include(n => n.Cat);
+            return View(await edu_portal_dbContext.ToListAsync());
+        }
 
         // GET: NewsLists/Details/5
         public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.NewsLists == null)
+            {
+                return NotFound();
+            }
+
+            var newsList = await _context.NewsLists
+                .Include(n => n.Cat)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (newsList == null)
+            {
+                return NotFound();
+            }
+
+            return View(newsList);
+        }
+        public async Task<IActionResult> read(int? id)
         {
             if (id == null || _context.NewsLists == null)
             {

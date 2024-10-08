@@ -1,0 +1,67 @@
+﻿@model IEnumerable<edu.Models.Lesson>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layoutteacher.cshtml";
+}
+
+<h1>Хичээлийн нэр: @ViewBag.name</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+           
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var id =  Context.Request.Query["id"];
+            <span>@id</span>
+            if(id!="" )
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+
+                            <a asp-action="Details" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Name)</a>
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            }else
+            {
+                @foreach (var item in Model.Where(ss=>ss.GId ==id))
+                {
+                    <tr>
+                        <td>
+
+                            <a asp-action="Details" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Name)</a>
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+
+    </tbody>
+</table>

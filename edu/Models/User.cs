@@ -3,17 +3,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class User
+namespace edu.Models
 {
-    public int Id { get; set; }
-
-    public string Username { get; set; }
-
-    public string Userpass { get; set; }
-
-    public string Rolename { get; set; }
-
-    public int? UniId { get; set; }
+    public partial class User
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Userpass { get; set; }
+        public string Rolename { get; set; }
+        public int? UniId { get; set; }
+        public DateTime? CrDate { get; set; }
+    }
 }

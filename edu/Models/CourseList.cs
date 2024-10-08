@@ -3,15 +3,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class CourseList
+namespace edu.Models
 {
-    public int Id { get; set; }
+    public partial class CourseList
+    {
+        public int Id { get; set; }
+        public int? CourseId { get; set; }
+        public int? GLId { get; set; }
 
-    public int? CourseId { get; set; }
-
-    public int? GLId { get; set; }
-
-    public virtual CourseName Course { get; set; }
+        public virtual CourseName Course { get; set; }
+    }
 }

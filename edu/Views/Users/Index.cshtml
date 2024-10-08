@@ -1,0 +1,60 @@
+﻿@model IEnumerable<edu.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layoutteacher.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Userpass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rolename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UniId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CrDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Userpass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rolename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UniId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CrDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

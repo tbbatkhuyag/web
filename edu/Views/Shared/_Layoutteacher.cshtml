@@ -1,4 +1,5 @@
-﻿@using edu.Views.Shared
+﻿@using System.Security.Claims
+@using edu.Views.Shared
 
 
 <!DOCTYPE html>
@@ -30,12 +31,15 @@
     <title>@ViewData["Title"] - edu</title>
 
 @*     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" /> *@
     <link href="https://cdn.kendostatic.com/2022.1.119/styles/kendo.default-nordic.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.kendostatic.com/2022.1.119/js/jquery.min.js"></script>
     <script src="https://cdn.kendostatic.com/2022.1.119/js/jszip.min.js"></script>
     <script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.all.min.js"></script>
-    <script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.aspnetmvc.min.js"></script> *@
+    <script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.aspnetmvc.min.js"></script>
+
+
+
 
 </head>
 <body>
@@ -58,11 +62,11 @@
                                     <span></span>
                                 </span>
                             </a>
-                            <a href="index.html" class="navbar-brand logo">
+                            <a href="~/home/index" class="navbar-brand logo">
                                 <img src="~/template/html/assets/img/logo.svg" class="img-fluid" alt="Logo">
                             </a>
                         </div>
-                        @* <component type="typeof(Menucat)" render-mode="ServerPrerendered" /> *@
+                        <component type="typeof(Menucat)" render-mode="ServerPrerendered" />
                     
                         <ul class="nav header-navbar-rht">
                             <li class="nav-item">
@@ -301,8 +305,8 @@
                                             <img src="~/template/html/assets/img/instructor/profile-avatar.jpg" alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">
-                                            <h6>Jenny Wilson</h6>
-                                            <p class="text-muted mb-0">Instructor</p>
+                                            <h6>@User.FindFirst(ClaimTypes.Name)?.Value</h6>
+                                            <p class="text-muted mb-0">@User.FindFirst(ClaimTypes.Role)?.Value</p>
                                         </div>
                                     </div>
                                     <a class="dropdown-item" href="~/Teacher/instructor-dashboard.html"><i class="feather-home me-1"></i> Dashboard</a>
@@ -313,7 +317,7 @@
                                             <input class="form-check-input" type="checkbox" id="night-mode">
                                         </div>
                                     </div>
-                                    <a class="dropdown-item" href="index.html"><i class="feather-log-out me-1"></i> Logout</a>
+                                    <a class="dropdown-item" href="~/home/logout"><i class="feather-log-out me-1"></i> Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -339,11 +343,11 @@
                                 </div>
                                 <div class="profile-group">
                                     <div class="profile-name text-center">
-                                        <h4><a href="#">Jenny Wilson</a></h4>
-                                        <p>Багш</p>
+                                        <h4><a href="#">@User.FindFirst(ClaimTypes.Name)?.Value</a></h4>
+                                        <p>@User.FindFirst(ClaimTypes.Role)?.Value</p>
                                     </div>
                                     <div class="go-dashboard text-center">
-                                        <a href="~/Teacher/addcourse" class="btn btn-primary">КУРС ХИЧЭЭЛ ҮҮСГЭХ</a>
+                                        <a href="~/GroupLessons/create" class="btn btn-primary">КУРС ХИЧЭЭЛ ҮҮСГЭХ</a>
                                     </div>
                                 </div>
                             </div>
@@ -353,7 +357,7 @@
                                 <h3>Самбар</h3>
                                 <ul>
                                     <li class="nav-item ">
-                                        <a href="~/Teacher/instructorcourse" class="nav-link">
+                                        <a href="~/GroupLessons/" class="nav-link">
                                             <i class="feather-book"></i> Миний хичээлүүд
                                         </a>
                                     </li>
@@ -418,7 +422,26 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="settings-widget">
-                                    @RenderBody()
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="widget-set">
+                                                    
+                                                        <div class="widget-content multistep-form">
+                                                            <fieldset id="first">
+                                                                <div class="add-course-form">
+                                                                    <br />
+                                                                  @RenderBody()
+                                                                  </div>
+                                                                  </fieldset>
+                                                                  </<div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
-﻿@using edu.Views.Shared
-
+﻿@using System.Security.Claims
+@using edu.Views.Shared
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,18 +54,36 @@
                                     <span></span>
                                 </span>
                             </a>
-                            <a href="index.html" class="navbar-brand logo">
+                            <a href="~/home/index" class="navbar-brand logo">
                                 <img src="~/template/html/assets/img/logo.svg" class="img-fluid" alt="Logo">
                             </a>
                         </div>
                         <component type="typeof(Menucat)" render-mode="ServerPrerendered" />
                         <ul class="nav header-navbar-rht">
-                            <li class="nav-item">
-                                <a class="nav-link header-sign" href="~/home/login">Нэвтрэх</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link header-login" href="~/home/register">Бүртгэл</a>
-                            </li>
+                            @if(User.FindFirst(ClaimTypes.Name)?.Value==null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link header-sign" href="~/home/login">Нэвтрэх</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link header-login" href="~/home/register">Бүртгэл</a>
+                                </li>
+                            }else
+                            {
+                                @if (User.FindFirst(ClaimTypes.Role)?.Value == "teacher")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link header-sign" href="~/GroupLessons/index">@User.FindFirst(ClaimTypes.Name)?.Value</a>
+                                    </li>
+                                    
+                                }else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link header-sign" href="~/GroupLessons/indexstudent">@User.FindFirst(ClaimTypes.Name)?.Value</a>
+                                    </li>
+                                }
+                            }
+                          
                         </ul>
                     </div>
                 </nav>
@@ -2012,5 +2031,7 @@
     </script>
 </body>
 
+
+<script src="~/js/site.js" asp-append-version="true"></script>
 @RenderSection("Scripts", required: false)
 </html>

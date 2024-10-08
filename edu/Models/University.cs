@@ -3,15 +3,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class University
+namespace edu.Models
 {
-    public int Id { get; set; }
-
-    public string Uniname { get; set; }
-
-    public string UninameShort { get; set; }
-
-    public string UniLogo { get; set; }
+    public partial class University
+    {
+        public int Id { get; set; }
+        public string Uniname { get; set; }
+        public string UninameShort { get; set; }
+        public string UniLogo { get; set; }
+    }
 }
