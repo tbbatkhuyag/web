@@ -323,12 +323,128 @@
             </div>
         </header>
 
-        @RenderBody()
+
         <div class="page-content">
             <div class="container">
                 <div class="row">
 
-                 
+                    <div class="col-xl-3 col-lg-4 col-md-12 theiaStickySidebar">
+                        <div class="settings-widget dash-profile">
+                            <div class="settings-menu p-0">
+                                <div class="profile-bg">
+                                    <h5>Адмирал</h5>
+                                    <img src="~/template/html/assets/img/instructor-profile-bg.jpg" alt="">
+                                    <div class="profile-img">
+                                        <a href="#"><img src="~/template/html/assets/img/user/user15.jpg" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="profile-group">
+                                    <div class="profile-name text-center">
+                                        <h4><a href="#">@User.FindFirst(ClaimTypes.Name)?.Value</a></h4>
+                                        <p>@User.FindFirst(ClaimTypes.Role)?.Value</p>
+                                    </div>
+                                    <div class="go-dashboard text-center">
+                                        <a href="~/GroupLessons/create" class="btn btn-primary">КУРС ХИЧЭЭЛ ҮҮСГЭХ</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-widget account-settings">
+                            <div class="settings-menu">
+                                <h3>Самбар</h3>
+                                <ul>
+                                    <li class="nav-item ">
+                                        <a href="~/GroupLessons/" class="nav-link">
+                                            <i class="feather-book"></i> Миний хичээлүүд
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/Teacher/instructorreviews" class="nav-link">
+                                            <i class="feather-star"></i> Комментууд
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/Teacher/instructorearnings" class="nav-link">
+                                            <i class="feather-pie-chart"></i> Орлого
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/Teacher/instructororders" class="nav-link">
+                                            <i class="feather-shopping-bag"></i> Захиалгууд
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/Teacher/instructorstudentgrid" class="nav-link">
+                                            <i class="feather-users"></i> Оюутнууд
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/Teacher/instructorpayouts" class="nav-link">
+                                            <i class="feather-dollar-sign"></i> Төлбөр
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="~/Teacher/instructortitle">
+                                    <h3>Бүртгэл тохиргоо</h3>
+                                </div>
+                                <ul>
+                                    <li class="nav-item">
+                                        <a href="~/Teacher/instructoreditprofile" class="nav-link ">
+                                            <i class="feather-settings"></i> Профайл
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/Teacher/instructorsecurity" class="nav-link">
+                                            <i class="feather-user"></i> Нууц үг
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/Teacher/instructorsocialprofiles" class="nav-link">
+                                            <i class="feather-refresh-cw"></i> Олон нийтийн сүлжээ
+                                        </a>
+                                    </li>
+                                   
+                                    <li class="nav-item">
+                                        <a href="~/home/logout" class="nav-link">
+                                            <i class="feather-power"></i>Гарах
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-9 col-lg-8 col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="settings-widget">
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="widget-set">
+                                                    
+                                                        <div class="widget-content multistep-form">
+                                                            <fieldset id="first">
+                                                                <div class="add-course-form">
+                                                                    <br />
+                                                                  @RenderBody()
+                                                                  </div>
+                                                                  </fieldset>
+                                                                  </<div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
