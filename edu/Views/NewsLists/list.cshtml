@@ -1,4 +1,5 @@
-﻿@model IEnumerable<edu.Models.NewsList>
+﻿@using System.Web
+@model IEnumerable<edu.Models.NewsList>
 @inject edu_portal_dbContext Contex
 @{
     ViewData["Title"] = "Index";
@@ -6,13 +7,193 @@
     var txtname = Contex.NewsCats.SingleOrDefault(vs => vs.Id == Int32.Parse(ViewData["newsid"].ToString())).Txtname;
 }
 
-<h1>@txtname</h1>
 
 
-@foreach (var item in Model) {
-        @Html.DisplayFor(modelItem => item.Txtname)
+<section class="course-content" style="transform: none;">
+    <div class="container" style="transform: none;">
+        <div class="row" style="transform: none;">
+            <div class="col-lg-9 col-md-12">
+                <div class="row">
 
-    <hr />
-                @Html.Raw(item.Txtcontent)
-         
-}
+                    <h1>@txtname</h1>
+
+
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col-md-6 col-sm-12">
+
+                            <div class="blog grid-blog">
+                                <div class="blog-image">
+                                    <a href="/NewsLists/read/@item.Id"><img class="img-fluid" src="~/template/html/assets/img/blog/blog-09.jpg" alt="Post Image"></a>
+                                </div>
+                                <div class="blog-grid-box">
+                                    <div class="blog-info clearfix">
+                                        <div class="post-left">
+                                            <ul>
+                                                <li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="">Jun 14, 2024</li>
+                                                <li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="">Admin</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <h3 class="blog-title"><a href="/NewsLists/read/@item.Id">  @Html.DisplayFor(modelItem => item.Txtname)</a></h3>
+                                    <div class="blog-content blog-read">
+                                        <p>@Html.Raw(HttpUtility.HtmlDecode(item.Txtmore)) […]</p>
+                                        <a href="/NewsLists/read/@item.Id" class="read-more btn btn-primary">Унших</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination lms-page">
+                            <li class="page-item prev">
+                                <a class="page-link" href="javascript:void(0);" tabindex="-1"><i class="fas fa-angle-left"></i></a>
+                            </li>
+                            <li class="page-item first-page active">
+                                <a class="page-link" href="javascript:void(0);">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);">4</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);">5</a>
+                            </li>
+                            <li class="page-item next">
+                                <a class="page-link" href="javascript:void(0);"><i class="fas fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-12 sidebar-right theiaStickySidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+                    <div class="card search-widget blog-search blog-widget">
+                        <div class="card-body">
+                            <form class="search-form">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Search..." class="form-control">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div><div class="card post-widget blog-widget">
+                        <div class="card-header">
+                            <h4 class="card-title">Recent Posts</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="latest-posts">
+                                <li>
+                                    <div class="post-thumb">
+                                        <a href="blog-details.html">
+                                            <img class="img-fluid" src="assets/img/blog/blog-01.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4>
+                                            <a href="blog-details.html">Learn Webs Applications Development from Experts</a>
+                                        </h4>
+                                        <p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="">Jun 14, 2022</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="post-thumb">
+                                        <a href="blog-details.html">
+                                            <img class="img-fluid" src="assets/img/blog/blog-02.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4>
+                                            <a href="blog-details.html">Expand Your Career Opportunities With Python</a>
+                                        </h4>
+                                        <p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt=""> 3 Dec 2019</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="post-thumb">
+                                        <a href="blog-details.html">
+                                            <img class="img-fluid" src="assets/img/blog/blog-03.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4>
+                                            <a href="blog-details.html">Complete PHP Programming Career Guideline</a>
+                                        </h4>
+                                        <p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt=""> 3 Dec 2019</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><div class="card category-widget blog-widget">
+                        <div class="card-header">
+                            <h4 class="card-title">Categories</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="categories">
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Business </a></li>
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Courses </a></li>
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Education </a></li>
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Graphics Design </a></li>
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Programming </a></li>
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Web Design </a></li>
+                            </ul>
+                        </div>
+                    </div><div class="card category-widget blog-widget">
+                        <div class="card-header">
+                            <h4 class="card-title">Archives</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="categories">
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> January 2022 </a></li>
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> February 2022 </a></li>
+                                <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> April 2022 </a></li>
+                            </ul>
+                        </div>
+                    </div><div class="card tags-widget blog-widget tags-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Latest Tags</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="tags">
+                                <li><a href="javascript:void(0);" class="tag">HTML</a></li>
+                                <li><a href="javascript:void(0);" class="tag">Java Script</a></li>
+                                <li><a href="javascript:void(0);" class="tag">Css</a></li>
+                                <li><a href="javascript:void(0);" class="tag">Jquery</a></li>
+                                <li><a href="javascript:void(0);" class="tag">Java</a></li>
+                                <li><a href="javascript:void(0);" class="tag">React</a></li>
+                            </ul>
+                        </div>
+                    </div><div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all; width: 295px; height: 1658px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
