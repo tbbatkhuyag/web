@@ -1,7 +1,6 @@
 ﻿@using System.Security.Claims
 @using edu.Views.Shared
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,10 +40,6 @@
 </head>
 <body>
 
-
-
-
-
     <div class="main-wrapper">
 
         <header class="header header-page">
@@ -64,10 +59,9 @@
                             </a>
                         </div>
                         <component type="typeof(Menucat)" render-mode="ServerPrerendered" />
-                    
                         <ul class="nav header-navbar-rht">
                             <li class="nav-item">
-                                <a href="~/Teacher/instructor-chat.html"><img src="~/template/html/assets/img/icon/messages.svg" alt="img"></a>
+                                <a href="course-message.html"><img src="~/template/html/assets/img/icon/messages.svg" alt="img"></a>
                             </li>
                             <li class="nav-item cart-nav">
                                 <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
@@ -292,29 +286,29 @@
                             <li class="nav-item user-nav">
                                 <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                     <span class="user-img">
-                                        <img src="~/template/html/assets/img/instructor/profile-avatar.jpg" alt="">
+                                        <img src="~/template/html/assets/img/user/user11.jpg" alt="">
                                         <span class="status online"></span>
                                     </span>
                                 </a>
                                 <div class="users dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
                                     <div class="user-header">
                                         <div class="avatar avatar-sm">
-                                            <img src="~/template/html/assets/img/instructor/profile-avatar.jpg" alt="User Image" class="avatar-img rounded-circle">
+                                            <img src="~/template/html/assets/img/user/user11.jpg" alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">
                                             <h6>@User.FindFirst(ClaimTypes.Name)?.Value</h6>
                                             <p class="text-muted mb-0">@User.FindFirst(ClaimTypes.Role)?.Value</p>
                                         </div>
                                     </div>
-                                    <a class="dropdown-item" href="~/Teacher/instructor-dashboard.html"><i class="feather-home me-1"></i> Dashboard</a>
-                                    <a class="dropdown-item" href="~/Teacher/instructor-edit-profile.html"><i class="feather-star me-1"></i> Edit Profile</a>
-                                    <div class="dropdown-item night-mode">
+                                    <a class="dropdown-item" href="~/student/settingeditprofile"><i class="feather-user me-1"></i> Профайл</a>
+                                    <a class="dropdown-item" href="~/student/settingstudentsubscription"><i class="feather-star me-1"></i> Захиалга</a>
+                                 @*    <div class="dropdown-item night-mode">
                                         <span><i class="feather-moon me-1"></i> Night Mode </span>
                                         <div class="form-check form-switch check-on m-0">
                                             <input class="form-check-input" type="checkbox" id="night-mode">
                                         </div>
-                                    </div>
-                                    <a class="dropdown-item" href="~/home/logout"><i class="feather-log-out me-1"></i> Logout</a>
+                                    </div> *@
+                                    <a class="dropdown-item" href="~/home/logout"><i class="feather-log-out me-1"></i> Гарах</a>
                                 </div>
                             </li>
                         </ul>
@@ -323,15 +317,112 @@
             </div>
         </header>
 
-        @RenderBody()
+
         <div class="page-content">
             <div class="container">
                 <div class="row">
 
-                 
+                    <div class="col-xl-3 col-md-4 theiaStickySidebar">
+                        <div class="settings-widget dash-profile mb-3">
+                            <div class="settings-menu p-0">
+                                <div class="profile-bg">
+                                    <h5>Анхан</h5>
+                                    <img src="~/template/html/assets/img/profile-bg.jpg" alt="">
+                                    <div class="profile-img">
+                                        <a href="~/student/studentprofile"><img src="~/template/html/assets/img/user/user11.jpg" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="profile-group">
+                                    <div class="profile-name text-center">
+                                        <h4><a href="~/student/studentprofile">@User.FindFirst(ClaimTypes.Name)?.Value</a></h4>
+                                        <p>@User.FindFirst(ClaimTypes.Role)?.Value</p>
+                                    </div>
+                                    <div class="go-dashboard text-center">
+                                        <a href="~/student/depositstudentdashboard" class="btn btn-primary">Сурах</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-widget account-settings">
+                            <div class="settings-menu">
+                                <h3>Тохиргоо</h3>
+                                <ul>
+                                    <li class="nav-item ">
+                                        <a href="~/student/settingeditprofile" class="nav-link">
+                                            <i class="feather-settings"></i> Профайл
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/student/settingstudentsecurity" class="nav-link">
+                                            <i class="feather-user"></i> Нууц үг
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/student/settingstudentsocialprofile" class="nav-link">
+                                            <i class="feather-refresh-cw"></i> Олон нийтийн сүлжээ
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/home/logout" class="nav-link">
+                                            <i class="feather-power"></i> Гарах
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h3>Захиалга</h3>
+                                <ul>
+                                    <li class="nav-item">
+                                        <a href="~/student/settingstudentsubscription" class="nav-link ">
+                                            <i class="feather-calendar"></i> Миний захиалга
+                                        </a>
+                                    </li>
+                               
+                                    <li class="nav-item">
+                                        <a href="~/student/settingstudentpayment" class="nav-link">
+                                            <i class="feather-credit-card"></i> Төлбөр
+                                        </a>
+                                    </li>
+                                  
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-xl-9 col-lg-8 col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="settings-widget">
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="widget-set">
+
+                                                        <div class="widget-content multistep-form">
+                                                            <fieldset id="first">
+                                                                <div class="add-course-form">
+                                                                    <br />
+                                                                    @RenderBody()
+                                                                </div>
+                                                            </fieldset>
+                                                            </<div></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
-
 
         <footer class="footer">
 
@@ -434,8 +525,12 @@
             </div>
 
         </footer>
+        
 
     </div>
+
+
+
 
 
 @* 
