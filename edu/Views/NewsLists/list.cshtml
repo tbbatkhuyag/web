@@ -1,0 +1,18 @@
+﻿@model IEnumerable<edu.Models.NewsList>
+@inject edu_portal_dbContext Contex
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layoutnews.cshtml";
+    var txtname = Contex.NewsCats.SingleOrDefault(vs => vs.Id == Int32.Parse(ViewData["newsid"].ToString())).Txtname;
+}
+
+<h1>@txtname</h1>
+
+
+@foreach (var item in Model) {
+        @Html.DisplayFor(modelItem => item.Txtname)
+
+    <hr />
+                @Html.Raw(item.Txtcontent)
+         
+}

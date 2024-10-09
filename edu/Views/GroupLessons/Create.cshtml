@@ -1,0 +1,71 @@
+﻿@model edu.Models.GroupLesson
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layoutteacher.cshtml";
+}
+
+
+
+<form asp-action="Create">
+                                <div class="add-course-inner-header">
+                                    <br />
+                                    <h4>КУРС ХИЧЭЭЛ ҮҮСГЭХ</h4>
+                                </div>
+                                <div class="add-course-form">
+                                 
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                         
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label asp-for="Name" class="control-label"></label>
+                                                    <input asp-for="Name" class="form-control" />
+                                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Logo" class="control-label"></label>
+                                                    <input asp-for="Logo" class="form-control" />
+                                                    <span asp-validation-for="Logo" class="text-danger"></span>
+                                                </div>
+                                             @*    <div class="form-group">
+                                                    <label asp-for="TeacherId" class="control-label"></label>
+                                                    <input asp-for="TeacherId" class="form-control" />
+                                                    <span asp-validation-for="TeacherId" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="UniId" class="control-label"></label>
+                                                    <input asp-for="UniId" class="form-control" />
+                                                    <span asp-validation-for="UniId" class="text-danger"></span>
+                                                </div> *@
+                                                <div class="form-group">
+                                                    <label asp-for="Txtdatetime" class="control-label"></label>
+                                                    <input asp-for="Txtdatetime" class="form-control" />
+                                                    <span asp-validation-for="Txtdatetime" class="text-danger"></span>
+                                                </div>
+                                              
+
+                                              <br />
+                                                   
+                                          
+                                        </div>
+
+                                    </div>
+
+                                    <div class="widget-btn">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+
+                                        <a asp-action="Index" class="btn btn-info-light next_btn">Back to List</a>
+                                    </div>
+
+                                </div>
+
+</form>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

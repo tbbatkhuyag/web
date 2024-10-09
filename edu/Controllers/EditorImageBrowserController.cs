@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using Kendo.Mvc.Infrastructure;
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,7 @@ namespace Kendo.Mvc.Examples.Controllers
 
         public virtual bool AuthorizeThumbnail(string path)
         {
+            //var userfile = User.FindFirst(ClaimTypes.Name)?.Value + "/";
             return CanAccess(path);
         }
 

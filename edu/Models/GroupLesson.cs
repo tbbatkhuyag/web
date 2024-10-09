@@ -3,21 +3,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class GroupLesson
+namespace edu.Models
 {
-    public int Id { get; set; }
-
-    public string Name { get; set; }
-
-    public string Logo { get; set; }
-
-    public int? TeacherId { get; set; }
-
-    public int? UniId { get; set; }
-
-    public DateTime? Txtdatetime { get; set; }
-
-    public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
+    public partial class GroupLesson
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Logo { get; set; }
+        public int? TeacherId { get; set; }
+        public int? UniId { get; set; }
+        public DateTime? Txtdatetime { get; set; }
+    }
 }

@@ -70,6 +70,22 @@ namespace edu.Controllers
 
             return View(newsCat);
         }
+        public async Task<IActionResult> read(int? id)
+        {
+            if (id == null || _context.NewsCats == null)
+            {
+                return NotFound();
+            }
+
+            var newsCat = await _context.NewsCats
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (newsCat == null)
+            {
+                return NotFound();
+            }
+
+            return View(newsCat);
+        }
 
         // GET: NewsCats/Create
         public IActionResult Create()
@@ -109,7 +125,7 @@ namespace edu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Createsub(int sid, [Bind("Id,Txtname,Vis,TxtOrd,SubId,Txttype,Txtmore,Txtcontent,TxtDate")] NewsCat newsCat)
+        public async Task<IActionResult> Createsub(int sid, [Bind("Id,Txtname,Vis,TxtOrd,SubId,Txttype,Txtmore,Txtlink,Txtcontent,TxtDate")] NewsCat newsCat)
         {
             if (ModelState.IsValid)
             {
@@ -147,7 +163,7 @@ namespace edu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Txtname,Vis,TxtOrd,SubId,Txtmore,Txttype,Txtcontent,TxtDate")] NewsCat newsCat)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Txtname,Vis,TxtOrd,SubId,Txtmore,Txttype,Txtcontent,Txtlink,TxtDate")] NewsCat newsCat)
         {
             if (id != newsCat.Id)
             {

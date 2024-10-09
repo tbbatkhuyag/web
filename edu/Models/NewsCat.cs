@@ -3,29 +3,26 @@
 using System;
 using System.Collections.Generic;
 
-namespace edu.Models;
-
-public partial class NewsCat
+namespace edu.Models
 {
-    public int Id { get; set; }
+    public partial class NewsCat
+    {
+        public NewsCat()
+        {
+            NewsLists = new HashSet<NewsList>();
+        }
 
-    public string Txtname { get; set; }
+        public int Id { get; set; }
+        public string Txtname { get; set; }
+        public int? TxtOrd { get; set; }
+        public string Txtmore { get; set; }
+        public string Txtcontent { get; set; }
+        public int? SubId { get; set; }
+        public DateTime? TxtDate { get; set; }
+        public int? Txttype { get; set; }
+        public string Txtlink { get; set; }
+        public long? Vis { get; set; }
 
-    public int? TxtOrd { get; set; }
-
-    public string Txtmore { get; set; }
-
-    public string Txtcontent { get; set; }
-
-    public int? SubId { get; set; }
-
-    public DateTime? TxtDate { get; set; }
-
-    public int? Txttype { get; set; }
-
-    public string Txtlink { get; set; }
-
-    public long? Vis { get; set; }
-
-    public virtual ICollection<NewsList> NewsLists { get; set; } = new List<NewsList>();
+        public virtual ICollection<NewsList> NewsLists { get; set; }
+    }
 }

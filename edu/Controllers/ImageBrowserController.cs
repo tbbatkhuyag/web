@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security.Claims;
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ namespace Kendo.Mvc.Examples.Controllers
     public class ImageBrowserController : EditorImageBrowserController
     {
         private const string contentFolderRoot = "shared/";
+       
         private const string folderName = "Images/";
         private static readonly string[] foldersToCopy = new[] { "shared/images/employees" };
 
@@ -32,7 +34,8 @@ namespace Kendo.Mvc.Examples.Controllers
 
         private string CreateUserFolder()
         {
-            var virtualPath = Path.Combine(contentFolderRoot, "UserFiles", folderName);
+            var userfile = User.FindFirst(ClaimTypes.Name)?.Value+"/";
+            var virtualPath = Path.Combine(contentFolderRoot, "UserFiles", folderName+ userfile);
             var path = "~/wwwroot/shared";
         
             //if (!Directory.Exists(path))

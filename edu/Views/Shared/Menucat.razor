@@ -2,9 +2,10 @@
 @using Microsoft.EntityFrameworkCore
 @using edu.Models
 @inject edu_portal_dbContext Contex
+
 <div class="main-menu-wrapper">
     <div class="menu-header">
-        <a href="index.html" class="menu-logo">
+        <a href="~/home/index" class="menu-logo">
             <img src="~/template/html/assets/img/logo.svg" class="img-fluid" alt="Logo">
         </a>
         <a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -13,19 +14,114 @@
     </div>
     <ul class="main-nav">
 
-        @foreach (var item in Contex.NewsCats.ToList().Where(vs=>vs.SubId==null&&vs.Vis.Equals("1")).OrderBy(vs=>vs.TxtOrd))
+        @foreach (var item in Contex.NewsCats.ToList().Where(vs=>vs.SubId==null&&vs.Vis==2).OrderBy(vs=>vs.TxtOrd))
         {
             <li class="has-submenu">
-                <a href="">@item.Txtname <i class="fas fa-chevron-down"></i></a>
+                @if(item.Txttype==1)
+                {
+                    <a href="/">@item.Txtname
+                        <i class="fas fa-chevron-down"></i></a>
+                }
+                else
+                {
+                    @if (item.Txttype == 2)
+                    {
+                        <a href="/NewsCats/read/@item.Id">
+                            @item.Txtname
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        }
+                        else
+                        {
+                            @if (item.Txttype == 3)
+                            {
+                            <a href="@item.Txtlink">@item.Txtname <i class="fas fa-chevron-down"></i></a>
 
-                @foreach (var it in Contex.NewsCats.ToList().Where(vs => vs.Vis.Equals("1")).OrderBy(vs => vs.TxtOrd))
+                            }
+                            else
+                            {
+                                @if (item.Txttype == 4)
+                                {
+                                <a href="/NewsLists/list/@item.Id">
+                                        @item.Txtname
+                                        <i class="fas fa-chevron-down"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="">
+                                        @item.Txtname
+                                        <i class="fas fa-chevron-down"></i>
+                                    </a>
+                                }
+
+                            }
+
+                    }
+                   
+                }
+                        
+                 <ul class="submenu">
+
+                @foreach (var it in Contex.NewsCats.ToList().Where(vs => vs.Vis == 2).OrderBy(vs => vs.TxtOrd))
                 {
                     @if (it.SubId == item.Id)
                     {
-                        <ul class="submenu">
-                            <li><a href="instructor-dashboard.html">@it.Txtname</a></li>
+                       
+                            @if (it.Txttype == 1)
+                            {
+                             <li>  <a href="/">
+                                    @it.Txtname
+                                    <i class="fas fa-chevron-down"></i>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                @if (it.Txttype == 2)
+                                {
+                                    <li>
+                                        <a href="/NewsCats/read/@it.Id">
+                                        @it.Txtname
+                                        <i class="fas fa-chevron-down"></i>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    @if (it.Txttype == 3)
+                                    {
+                                        <li><a href="@it.Txtlink">@it.Txtname <i class="fas fa-chevron-down"></i></a></li>
 
-                            @foreach (var its in Contex.NewsCats.ToList().Where(vs => vs.Vis.Equals("1")).OrderBy(vs => vs.TxtOrd))
+                                    }
+                                    else
+                                    {
+                                        @if (it.Txttype == 4)
+                                        {
+                                            <li>
+                                                <a href="/NewsLists/list/@it.Id">
+                                                @it.Txtname
+                                                <i class="fas fa-chevron-down"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="">
+                                                @it.Txtname
+                                                <i class="fas fa-chevron-down"></i>
+                                                </a>
+                                            </li>
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+
+                            @*  @foreach (var its in Contex.NewsCats.ToList().Where(vs => vs.Vis == 1).OrderBy(vs => vs.TxtOrd))
                             {
                                 @if (its.SubId == it.Id)
                                 {
@@ -35,10 +131,11 @@
                                     </ul>
 
                                 }
-                            }
-                        </ul>
+                            } *@
+                        
                     }
                 }
+                </ul>
 
             </li>
 
@@ -50,7 +147,7 @@
     @*     <li class="has-submenu active">
             <a class="" href="">Home <i class="fas fa-chevron-down"></i></a>
             <ul class="submenu">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li class="active"><a href="~/home/index">Home</a></li>
                 <li><a href="index-two.html">Home Two</a></li>
                 <li><a href="index-three.html">Home Three</a></li>
                 <li><a href="index-four.html">Home Four</a></li>

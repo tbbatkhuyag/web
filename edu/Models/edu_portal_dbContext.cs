@@ -3,227 +3,263 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace edu.Models;
-
-public partial class edu_portal_dbContext : DbContext
+namespace edu.Models
 {
-    public edu_portal_dbContext(DbContextOptions<edu_portal_dbContext> options)
-        : base(options)
+    public partial class edu_portal_dbContext : DbContext
     {
+        public edu_portal_dbContext()
+        {
+        }
+
+        public edu_portal_dbContext(DbContextOptions<edu_portal_dbContext> options)
+            : base(options)
+        {
+        }
+
+        public virtual DbSet<CourseList> CourseLists { get; set; }
+        public virtual DbSet<CourseName> CourseNames { get; set; }
+        public virtual DbSet<GroupLesson> GroupLessons { get; set; }
+        public virtual DbSet<Lesson> Lessons { get; set; }
+        public virtual DbSet<LessonView> LessonViews { get; set; }
+        public virtual DbSet<NewsCat> NewsCats { get; set; }
+        public virtual DbSet<NewsList> NewsLists { get; set; }
+        public virtual DbSet<University> Universities { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CourseList>(entity =>
+            {
+                entity.ToTable("course_list");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CourseId).HasColumnName("course_id");
+
+                entity.Property(e => e.GLId).HasColumnName("g_l_id");
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.CourseLists)
+                    .HasForeignKey(d => d.CourseId)
+                    .HasConstraintName("FK_course_list_course_name");
+            });
+
+            modelBuilder.Entity<CourseName>(entity =>
+            {
+                entity.ToTable("course_name");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Logo)
+                    .HasMaxLength(50)
+                    .HasColumnName("logo");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.Txtmore)
+                    .HasColumnType("ntext")
+                    .HasColumnName("txtmore");
+            });
+
+            modelBuilder.Entity<GroupLesson>(entity =>
+            {
+                entity.ToTable("group_lesson");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Logo)
+                    .HasMaxLength(50)
+                    .HasColumnName("logo");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.TeacherId).HasColumnName("teacher_id");
+
+                entity.Property(e => e.Txtdatetime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("txtdatetime");
+
+                entity.Property(e => e.UniId).HasColumnName("uni_id");
+            });
+
+            modelBuilder.Entity<Lesson>(entity =>
+            {
+                entity.ToTable("lesson");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CreateDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("create_date");
+
+                entity.Property(e => e.GId).HasColumnName("g_id");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.TeacherId).HasColumnName("teacher_id");
+
+                entity.Property(e => e.Txtcontent)
+                    .HasColumnType("ntext")
+                    .HasColumnName("txtcontent");
+
+                entity.Property(e => e.Txtmore)
+                    .HasColumnType("ntext")
+                    .HasColumnName("txtmore");
+
+                entity.Property(e => e.Txtvideo).HasColumnName("txtvideo");
+
+                entity.Property(e => e.Txtvoice).HasColumnName("txtvoice");
+
+                entity.Property(e => e.Txtwork)
+                    .HasColumnType("ntext")
+                    .HasColumnName("txtwork");
+
+                entity.Property(e => e.ViewMinut).HasColumnName("view_minut");
+            });
+
+            modelBuilder.Entity<LessonView>(entity =>
+            {
+                entity.ToTable("lesson_view");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.ContentType)
+                    .HasMaxLength(10)
+                    .HasColumnName("content_type")
+                    .IsFixedLength();
+
+                entity.Property(e => e.EndDate)
+                    .HasMaxLength(10)
+                    .HasColumnName("end_date")
+                    .IsFixedLength();
+
+                entity.Property(e => e.LesId).HasColumnName("les_id");
+
+                entity.Property(e => e.StartDate)
+                    .HasMaxLength(10)
+                    .HasColumnName("start_date")
+                    .IsFixedLength();
+
+                entity.Property(e => e.ViewMinut).HasColumnName("view_minut");
+            });
+
+            modelBuilder.Entity<NewsCat>(entity =>
+            {
+                entity.ToTable("news_cat");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.SubId).HasColumnName("sub_id");
+
+                entity.Property(e => e.TxtDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("txt_date");
+
+                entity.Property(e => e.TxtOrd).HasColumnName("txt_ord");
+
+                entity.Property(e => e.Txtcontent)
+                    .HasColumnType("ntext")
+                    .HasColumnName("txtcontent");
+
+                entity.Property(e => e.Txtlink).HasColumnName("txtlink");
+
+                entity.Property(e => e.Txtmore)
+                    .HasColumnType("ntext")
+                    .HasColumnName("txtmore");
+
+                entity.Property(e => e.Txtname)
+                    .HasMaxLength(50)
+                    .HasColumnName("txtname");
+
+                entity.Property(e => e.Txttype).HasColumnName("txttype");
+
+                entity.Property(e => e.Vis).HasColumnName("vis");
+            });
+
+            modelBuilder.Entity<NewsList>(entity =>
+            {
+                entity.ToTable("news_list");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CatId).HasColumnName("cat_id");
+
+                entity.Property(e => e.Txtcontent)
+                    .HasColumnType("ntext")
+                    .HasColumnName("txtcontent");
+
+                entity.Property(e => e.Txtdate)
+                    .HasMaxLength(50)
+                    .HasColumnName("txtdate");
+
+                entity.Property(e => e.Txtdatetime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("txtdatetime");
+
+                entity.Property(e => e.Txtmore)
+                    .HasColumnType("ntext")
+                    .HasColumnName("txtmore");
+
+                entity.Property(e => e.Txtname)
+                    .HasMaxLength(250)
+                    .HasColumnName("txtname");
+
+                entity.HasOne(d => d.Cat)
+                    .WithMany(p => p.NewsLists)
+                    .HasForeignKey(d => d.CatId)
+                    .HasConstraintName("FK_news_list_news_cat");
+            });
+
+            modelBuilder.Entity<University>(entity =>
+            {
+                entity.ToTable("university");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.UniLogo)
+                    .HasMaxLength(10)
+                    .HasColumnName("uni_logo")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Uniname)
+                    .HasMaxLength(50)
+                    .HasColumnName("uniname");
+
+                entity.Property(e => e.UninameShort)
+                    .HasMaxLength(50)
+                    .HasColumnName("uniname_short");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("user");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CrDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("cr_date");
+
+                entity.Property(e => e.Rolename)
+                    .HasMaxLength(50)
+                    .HasColumnName("rolename");
+
+                entity.Property(e => e.UniId).HasColumnName("uni_id");
+
+                entity.Property(e => e.Username).HasColumnName("username");
+
+                entity.Property(e => e.Userpass).HasColumnName("userpass");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
-
-    public virtual DbSet<CourseList> CourseLists { get; set; }
-
-    public virtual DbSet<CourseName> CourseNames { get; set; }
-
-    public virtual DbSet<GroupLesson> GroupLessons { get; set; }
-
-    public virtual DbSet<Lesson> Lessons { get; set; }
-
-    public virtual DbSet<LessonView> LessonViews { get; set; }
-
-    public virtual DbSet<NewsCat> NewsCats { get; set; }
-
-    public virtual DbSet<NewsList> NewsLists { get; set; }
-
-    public virtual DbSet<University> Universities { get; set; }
-
-    public virtual DbSet<User> Users { get; set; }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<CourseList>(entity =>
-        {
-            entity.ToTable("course_list");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CourseId).HasColumnName("course_id");
-            entity.Property(e => e.GLId).HasColumnName("g_l_id");
-
-            entity.HasOne(d => d.Course).WithMany(p => p.CourseLists)
-                .HasForeignKey(d => d.CourseId)
-                .HasConstraintName("FK_course_list_course_name");
-        });
-
-        modelBuilder.Entity<CourseName>(entity =>
-        {
-            entity.ToTable("course_name");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Logo)
-                .HasMaxLength(50)
-                .HasColumnName("logo");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("name");
-            entity.Property(e => e.Txtmore)
-                .HasColumnType("ntext")
-                .HasColumnName("txtmore");
-        });
-
-        modelBuilder.Entity<GroupLesson>(entity =>
-        {
-            entity.ToTable("group_lesson");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Logo)
-                .HasMaxLength(50)
-                .HasColumnName("logo");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("name");
-            entity.Property(e => e.TeacherId).HasColumnName("teacher_id");
-            entity.Property(e => e.Txtdatetime)
-                .HasColumnType("datetime")
-                .HasColumnName("txtdatetime");
-            entity.Property(e => e.UniId).HasColumnName("uni_id");
-        });
-
-        modelBuilder.Entity<Lesson>(entity =>
-        {
-            entity.ToTable("lesson");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.GId).HasColumnName("g_id");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("name");
-            entity.Property(e => e.TeacherId).HasColumnName("teacher_id");
-            entity.Property(e => e.Txtcontent)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("txtcontent");
-            entity.Property(e => e.Txtmore)
-                .HasColumnType("ntext")
-                .HasColumnName("txtmore");
-            entity.Property(e => e.ViewMinut)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("view_minut");
-
-            entity.HasOne(d => d.GIdNavigation).WithMany(p => p.Lessons)
-                .HasForeignKey(d => d.GId)
-                .HasConstraintName("FK_lesson_group_lesson");
-        });
-
-        modelBuilder.Entity<LessonView>(entity =>
-        {
-            entity.ToTable("lesson_view");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.ContentType)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("content_type");
-            entity.Property(e => e.EndDate)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("end_date");
-            entity.Property(e => e.LesId).HasColumnName("les_id");
-            entity.Property(e => e.StartDate)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("start_date");
-            entity.Property(e => e.ViewMinut).HasColumnName("view_minut");
-        });
-
-        modelBuilder.Entity<NewsCat>(entity =>
-        {
-            entity.ToTable("news_cat");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.SubId).HasColumnName("sub_id");
-            entity.Property(e => e.TxtDate)
-                .HasColumnType("datetime")
-                .HasColumnName("txt_date");
-            entity.Property(e => e.TxtOrd).HasColumnName("txt_ord");
-            entity.Property(e => e.Txtcontent)
-                .HasColumnType("ntext")
-                .HasColumnName("txtcontent");
-            entity.Property(e => e.Txtlink).HasColumnName("txtlink");
-            entity.Property(e => e.Txtmore)
-                .HasColumnType("ntext")
-                .HasColumnName("txtmore");
-            entity.Property(e => e.Txtname)
-                .HasMaxLength(50)
-                .HasColumnName("txtname");
-            entity.Property(e => e.Txttype).HasColumnName("txttype");
-            entity.Property(e => e.Vis).HasColumnName("vis");
-        });
-
-        modelBuilder.Entity<NewsList>(entity =>
-        {
-            entity.ToTable("news_list");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CatId).HasColumnName("cat_id");
-            entity.Property(e => e.Txtcontent)
-                .HasColumnType("ntext")
-                .HasColumnName("txtcontent");
-            entity.Property(e => e.Txtdate)
-                .HasMaxLength(50)
-                .HasColumnName("txtdate");
-            entity.Property(e => e.Txtdatetime)
-                .HasColumnType("datetime")
-                .HasColumnName("txtdatetime");
-            entity.Property(e => e.Txtmore)
-                .HasColumnType("ntext")
-                .HasColumnName("txtmore");
-            entity.Property(e => e.Txtname)
-                .HasMaxLength(250)
-                .HasColumnName("txtname");
-
-            entity.HasOne(d => d.Cat).WithMany(p => p.NewsLists)
-                .HasForeignKey(d => d.CatId)
-                .HasConstraintName("FK_news_list_news_cat");
-        });
-
-        modelBuilder.Entity<University>(entity =>
-        {
-            entity.ToTable("university");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.UniLogo)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("uni_logo");
-            entity.Property(e => e.Uniname)
-                .HasMaxLength(50)
-                .HasColumnName("uniname");
-            entity.Property(e => e.UninameShort)
-                .HasMaxLength(50)
-                .HasColumnName("uniname_short");
-        });
-
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.ToTable("user");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Rolename)
-                .HasMaxLength(50)
-                .HasColumnName("rolename");
-            entity.Property(e => e.UniId).HasColumnName("uni_id");
-            entity.Property(e => e.Username)
-                .HasMaxLength(50)
-                .HasColumnName("username");
-            entity.Property(e => e.Userpass)
-                .HasMaxLength(50)
-                .HasColumnName("userpass");
-        });
-
-        OnModelCreatingPartial(modelBuilder);
-    }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
