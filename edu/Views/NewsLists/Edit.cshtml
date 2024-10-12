@@ -23,8 +23,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Txtmore" class="control-label"></label>
-                <input asp-for="Txtmore" class="form-control" />
-             @*    @(Html.Kendo().Editor()
+
+                @(Html.Kendo().Editor()
                     .Name("Txtmore")
                     .HtmlAttributes(new { style = "width: 100%; height:300px" })
                     .StyleSheets(css => css
@@ -52,7 +52,7 @@
                     .Upload("Upload", "ImageBrowser")
                     ).Value(ViewBag.Txtmore)
                     )
- *@
+
                 <span asp-validation-for="Txtmore" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -78,7 +78,7 @@
                     .ForeColor().BackColor()
                     )
                     .ImageBrowser(imageBrowser => imageBrowser
-                    .Image("~/shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/{0}")
+                    .Image("~/shared/UserFiles/images/{0}")
                     .Read("Read", "ImageBrowser")
                     .Create("Create", "ImageBrowser")
                     .Destroy("Destroy", "ImageBrowser")

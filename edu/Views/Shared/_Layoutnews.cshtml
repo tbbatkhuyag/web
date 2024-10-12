@@ -30,7 +30,7 @@
 
     <title>@ViewData["Title"] - edu</title>
 
-@*     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    @*     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="https://cdn.kendostatic.com/2022.1.119/styles/kendo.default-nordic.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.kendostatic.com/2022.1.119/js/jquery.min.js"></script>
@@ -64,7 +64,7 @@
                             </a>
                         </div>
                         <component type="typeof(Menucat)" render-mode="ServerPrerendered" />
-                    
+
                         <ul class="nav header-navbar-rht">
                             <li class="nav-item">
                                 <a href="~/Teacher/instructor-chat.html"><img src="~/template/html/assets/img/icon/messages.svg" alt="img"></a>
@@ -327,141 +327,139 @@
         <div class="page-content">
             <div class="container">
                 <div class="row">
-
-                 
+                </div>
             </div>
+
+
+            <footer class="footer">
+
+                <div class="footer-top aos" data-aos="fade-up">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+
+                                <div class="footer-widget footer-about">
+                                    <div class="footer-logo">
+                                        <img src="~/template/html/assets/img/logo.svg" alt="logo">
+                                    </div>
+                                    <div class="footer-about-content">
+                                        <p>Мөрөөдөлд хүрэх ганц зам бол сурах</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-6">
+
+                                <div class="footer-widget footer-menu">
+                                    <h2 class="footer-title">For Instructor</h2>
+                                    <ul>
+                                        <li><a href="instructor-profile.html">Profile</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                        <li><a href="register.html">Register</a></li>
+                                        <li><a href="instructor-list.html">Instructor</a></li>
+                                        <li><a href="deposit-instructor-dashboard.html"> Dashboard</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-6">
+
+                                <div class="footer-widget footer-menu">
+                                    <h2 class="footer-title">For Student</h2>
+                                    <ul>
+                                        <li><a href="student-profile.html">Profile</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                        <li><a href="register.html">Register</a></li>
+                                        <li><a href="students-list.html">Student</a></li>
+                                        <li><a href="deposit-student-dashboard.html"> Dashboard</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+
+                                <div class="footer-widget footer-contact">
+                                    <h2 class="footer-title">News letter</h2>
+                                    <div class="news-letter">
+                                        <form>
+                                            <input type="text" class="form-control" placeholder="Enter your email address" name="email">
+                                        </form>
+                                    </div>
+                                    <div class="footer-contact-info">
+                                        <div class="footer-address">
+                                            <img src="~/template/html/assets/img/icon/icon-20.svg" alt="" class="img-fluid">
+                                            <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                        </div>
+                                        <p>
+                                            <img src="~/template/html/assets/img/icon/icon-19.svg" alt="" class="img-fluid">
+                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c8acbaada9a5bba4a5bb88adb0a9a5b8a4ade6aba7a5">[email&#160;protected]</a>
+                                        </p>
+                                        <p class="mb-0">
+                                            <img src="~/template/html/assets/img/icon/icon-21.svg" alt="" class="img-fluid">
+                                            8989889
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="footer-bottom">
+                    <div class="container">
+
+                        <div class="copyright">
+                            <div class="row">
+                                @*  <div class="col-md-6">
+                                <div class="privacy-policy">
+                                <ul>
+                                <li><a href="term-condition.html">Terms</a></li>
+                                <li><a href="privacy-policy.html">Privacy</a></li>
+                                </ul>
+                                </div>
+                                </div> *@
+                                <div class="col-md-6">
+                                    <div class="copyright-text">
+                                        <p class="mb-0">&copy; @DateTime.Now.Year  DreamsLMS. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </footer>
+
         </div>
 
 
-        <footer class="footer">
+        @*
+        <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> *@
+        <script src="~/template/html/assets/js/jquery-3.7.1.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
-            <div class="footer-top aos" data-aos="fade-up">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
+        <script src="~/template/html/assets/js/bootstrap.bundle.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
-                            <div class="footer-widget footer-about">
-                                <div class="footer-logo">
-                                    <img src="~/template/html/assets/img/logo.svg" alt="logo">
-                                </div>
-                                <div class="footer-about-content">
-                                    <p>Мөрөөдөлд хүрэх ганц зам бол сурах</p>
-                                </div>
-                            </div>
+        <script src="~/template/html/assets/js/jquery.waypoints.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+        <script src="~/template/html/assets/js/jquery.counterup.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
-                        </div>
-                        <div class="col-lg-2 col-md-6">
+        <script src="~/template/html/assets/plugins/select2/js/select2.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
-                            <div class="footer-widget footer-menu">
-                                <h2 class="footer-title">For Instructor</h2>
-                                <ul>
-                                    <li><a href="instructor-profile.html">Profile</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="instructor-list.html">Instructor</a></li>
-                                    <li><a href="deposit-instructor-dashboard.html"> Dashboard</a></li>
-                                </ul>
-                            </div>
+        <script src="~/template/html/assets/js/owl.carousel.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
-                        </div>
-                        <div class="col-lg-2 col-md-6">
+        <script src="~/template/html/assets/plugins/slick/slick.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
-                            <div class="footer-widget footer-menu">
-                                <h2 class="footer-title">For Student</h2>
-                                <ul>
-                                    <li><a href="student-profile.html">Profile</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="students-list.html">Student</a></li>
-                                    <li><a href="deposit-student-dashboard.html"> Dashboard</a></li>
-                                </ul>
-                            </div>
+        <script src="~/template/html/assets/plugins/aos/aos.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
-                        </div>
-                        <div class="col-lg-4 col-md-6">
+        <script src="~/template/html/assets/js/script.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
+        <script src="~/template/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer=""></script>
 
-                            <div class="footer-widget footer-contact">
-                                <h2 class="footer-title">News letter</h2>
-                                <div class="news-letter">
-                                    <form>
-                                        <input type="text" class="form-control" placeholder="Enter your email address" name="email">
-                                    </form>
-                                </div>
-                                <div class="footer-contact-info">
-                                    <div class="footer-address">
-                                        <img src="~/template/html/assets/img/icon/icon-20.svg" alt="" class="img-fluid">
-                                        <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
-                                    </div>
-                                    <p>
-                                        <img src="~/template/html/assets/img/icon/icon-19.svg" alt="" class="img-fluid">
-                                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c8acbaada9a5bba4a5bb88adb0a9a5b8a4ade6aba7a5">[email&#160;protected]</a>
-                                    </p>
-                                    <p class="mb-0">
-                                        <img src="~/template/html/assets/img/icon/icon-21.svg" alt="" class="img-fluid">
-                                        8989889
-                                    </p>
-                                </div>
-                            </div>
+        @* <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer="">
+        *@
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="footer-bottom">
-                <div class="container">
-
-                    <div class="copyright">
-                        <div class="row">
-                            @*  <div class="col-md-6">
-                            <div class="privacy-policy">
-                            <ul>
-                            <li><a href="term-condition.html">Terms</a></li>
-                            <li><a href="privacy-policy.html">Privacy</a></li>
-                            </ul>
-                            </div>
-                            </div> *@
-                            <div class="col-md-6">
-                                <div class="copyright-text">
-                                    <p class="mb-0">&copy; @DateTime.Now.Year  DreamsLMS. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </footer>
-
-    </div>
-
-
-@* 
-    <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> *@
-    <script src="~/template/html/assets/js/jquery-3.7.1.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-
-    <script src="~/template/html/assets/js/bootstrap.bundle.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-
-    <script src="~/template/html/assets/js/jquery.waypoints.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-    <script src="~/template/html/assets/js/jquery.counterup.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-
-    <script src="~/template/html/assets/plugins/select2/js/select2.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-
-    <script src="~/template/html/assets/js/owl.carousel.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-
-    <script src="~/template/html/assets/plugins/slick/slick.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-
-    <script src="~/template/html/assets/plugins/aos/aos.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-
-    <script src="~/template/html/assets/js/script.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
-    <script src="~/template/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer=""></script>
-
-    @* <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer="">
-     *@    
-    
-    </script>
+        </script>
 </body>
 
 @RenderSection("Scripts", required: false)

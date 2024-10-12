@@ -16,7 +16,7 @@
                     <div class="blog-image">
                         <a href="#"><img class="img-fluid" src="~/template/html/assets/img/blog-banner.jpg" alt="Post Image"></a>
                     </div>
-              
+
                     <h3 class="blog-title"> @Html.DisplayFor(model => model.Txtname)</h3>
                     <div class="blog-content">
                         @Html.Raw(HttpUtility.HtmlDecode(Model.Txtcontent))
