@@ -1,4 +1,5 @@
-﻿@model edu.Models.NewsList
+﻿@using System.Security.Claims
+@model edu.Models.NewsList
 @inject edu_portal_dbContext Contex
 @{
     ViewData["Title"] = "Create";
@@ -42,7 +43,8 @@
                     .ForeColor().BackColor()
                     )
                     .ImageBrowser(imageBrowser => imageBrowser
-                    .Image("~/shared/UserFiles/images/{0}")
+                    .Image("~/shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/{0}")
+
                     .Read("Read", "ImageBrowser")
                     .Create("Create", "ImageBrowser")
                     .Destroy("Destroy", "ImageBrowser")
@@ -74,7 +76,8 @@
                     .ForeColor().BackColor()
                     )
                     .ImageBrowser(imageBrowser => imageBrowser
-                    .Image("~/shared/UserFiles/images/{0}")
+                    .Image("~/shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/{0}")
+
                     .Read("Read", "ImageBrowser")
                     .Create("Create", "ImageBrowser")
                     .Destroy("Destroy", "ImageBrowser")
