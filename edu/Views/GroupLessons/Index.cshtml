@@ -28,7 +28,7 @@
                 <thead>
                     <tr>
                         <th>COURSES</th>
-                        <th>STUDENTS</th>
+                      @*   <th>STUDENTS</th> *@
                         <th>STATUS</th>
                     </tr>
                 </thead>
@@ -44,7 +44,18 @@
                                 <div class="sell-table-group d-flex align-items-center">
                                     <div class="sell-group-img">
                                         <a href="/lessons/index?sid=@item.Id">
-                                            <img src="~/template/html/assets/img/course/course-10.jpg" class="img-fluid " alt="">
+                                            @if(item.Logo==null)
+                                            {
+                                                <img src="~/template/html/assets/img/course/course-10.jpg" class="img-fluid " alt="">
+
+                                            }else
+                                            {
+                                               @*  "~/shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/{0}" *@
+                                                <img src="~/shared/UserFiles/images/@User.FindFirst(ClaimTypes.Name)?.Value/@item.Logo" class="img-fluid " alt="">
+
+                                             }
+
+                                           
                                         </a>
                                     </div>
                                     <div class="sell-tabel-info">
@@ -62,7 +73,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>3200</td>
+                          @*   <td>3200</td> *@
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                                 @* <a asp-controller="lessons" asp-action="index" asp-route-id="@item.Id">Details</a> *@
