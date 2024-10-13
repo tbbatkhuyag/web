@@ -78,7 +78,8 @@
                     .ForeColor().BackColor()
                     )
                     .ImageBrowser(imageBrowser => imageBrowser
-                    .Image("~/shared/UserFiles/images/{0}")
+                    .Image("~/shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/{0}")
+
                     .Read("Read", "ImageBrowser")
                     .Create("Create", "ImageBrowser")
                     .Destroy("Destroy", "ImageBrowser")
