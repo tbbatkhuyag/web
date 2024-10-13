@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_Layoutteacher.cshtml";
 }
 
+<link href="https://cdn.kendostatic.com/2022.1.119/styles/kendo.default-nordic.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.kendostatic.com/2022.1.119/js/jquery.min.js"></script>
+<script src="https://cdn.kendostatic.com/2022.1.119/js/jszip.min.js"></script>
+<script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.all.min.js"></script>
+<script src="https://cdn.kendostatic.com/2022.1.119/js/kendo.aspnetmvc.min.js"></script>
 
 
 <form asp-action="Create">
@@ -24,11 +29,38 @@
                                                     <input asp-for="Name" class="form-control" />
                                                     <span asp-validation-for="Name" class="text-danger"></span>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label asp-for="Logo" class="control-label"></label>
-                                                    <input asp-for="Logo" class="form-control" />
-                                                    <span asp-validation-for="Logo" class="text-danger"></span>
-                                                </div>
+
+         
+                <div class="form-group">
+                    <label asp-for="Logo" class="control-label"></label>
+                    <input asp-for="Logo" hidden class="form-control" />
+                    @(Html.Kendo().Upload()
+                        .Name("files")
+                        .Async(a => a
+                        .Save("Validation_Save", "Upload")
+                        .Remove("Validation_Remove", "Upload")
+                        .SaveField("files")
+
+                        )
+                        .Validation(validation => validation.AllowedExtensions(new string[] { ".gif", ".jpg", ".png" }))
+                        .Multiple(false)
+                        .TemplateId("Logo")
+                        .Events(events => events.Select("onSelect"))
+                        )
+                    <span asp-validation-for="Logo" class="text-danger"></span>
+                </div>
+
+                <script type="text/javascript">
+                    function onSelect(e) {
+                        var fileName = e.files[0].name;  // Get the name of the first file
+                        console.log("Selected file name: " + fileName);
+
+                        // Display the file name in an HTML element (optional)
+                        document.getElementById("Logo").setAttribute('value', fileName);
+                        //  $("#Txtvideo").text(fileName);
+                    }
+                 
+                </script>
                                              @*    <div class="form-group">
                                                     <label asp-for="TeacherId" class="control-label"></label>
                                                     <input asp-for="TeacherId" class="form-control" />
@@ -67,5 +99,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
