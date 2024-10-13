@@ -1,0 +1,156 @@
+﻿@model IEnumerable<edu.Models.Lesson>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layoutstudentpublic.cshtml";
+}
+
+
+<div class="inner-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="instructor-wrap border-bottom-0 m-0">
+                    <div class="about-instructor align-items-center">
+                        <div class="abt-instructor-img">
+                            <a href="#">
+                      
+                                <img src="~/template/html/assets/img/user/user1.jpg" alt="img" class="img-fluid">
+                             </a>
+                        </div>
+                        <div class="instructor-detail me-3">
+                            <h5><a href="#">Nicole Brown</a></h5>
+                            <p>UX/UI Designer</p>
+                        </div>
+                        <div class="rating mb-0">
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="d-inline-block average-rating"><span>4.5</span> (15)</span>
+                        </div>
+                    </div>
+                    <span class="web-badge mb-3">ЦАХИМ БАГШ</span>
+                </div>
+                <h2>The Complete Web Developer Course 2.0</h2>
+                <p>Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL &amp; more!</p>
+                <div class="course-info d-flex align-items-center border-bottom-0 m-0 p-0">
+                    <div class="cou-info">
+                        <img src="assets/img/icon/icon-01.svg" alt="">
+                        <p>12+ Lesson</p>
+                    </div>
+                    <div class="cou-info">
+                        <img src="assets/img/icon/timer-icon.svg" alt="">
+                        <p>9hr 30min</p>
+                    </div>
+                    <div class="cou-info">
+                        <img src="assets/img/icon/people.svg" alt="">
+                        <p>32 students enrolled</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="page-content course-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+                <div class="card overview-sec">
+                    <div class="card-body">
+                        <h1>Хичээлийн нэр: @ViewBag.name</h1>
+
+                        @* <p>
+                        <a asp-action="Create">Create New</a>
+                        </p> *@
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+
+                                        @*    <td
+
+
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    </td> *@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+
+         
+
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar-sec">
+
+                    <div class="video-sec vid-bg">
+                        <div class="card">
+                            <div class="card-body">
+                             
+                                <div class="video-details">
+                                    @* <div class="course-fee">
+                                        <h2>FREE</h2>
+                                        <p><span>$99.00</span> 50% off</p>
+                                    </div> *@
+                              @*       <div class="row gx-2">
+                                        <div class="col-md-6">
+                                            <a href="#" class="btn btn-wish w-100"><i class="feather-heart"></i> Add to Wishlist</a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="#" class="btn btn-wish w-100"><i class="feather-share-2"></i> Түгээх</a>
+                                        </div>
+                                    </div> *@
+                                    <a href="#" class="btn btn-enroll w-100">Яг одоо бүртгүүлнэ үү</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card feature-sec">
+                        <div class="card-body">
+                            <div class="cat-title">
+                                <h4>Includes</h4>
+                            </div>
+                            <ul>
+                                <li><img src="assets/img/icon/users.svg" class="me-2" alt=""> Enrolled: <span>32 students</span></li>
+                                <li><img src="assets/img/icon/timer.svg" class="me-2" alt=""> Duration: <span>20 hours</span></li>
+                                <li><img src="assets/img/icon/chapter.svg" class="me-2" alt=""> Chapters: <span>15</span></li>
+                                <li><img src="assets/img/icon/video.svg" class="me-2" alt=""> Video:<span> 12 hours</span></li>
+                                <li><img src="assets/img/icon/chart.svg" class="me-2" alt=""> Level: <span>Beginner</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

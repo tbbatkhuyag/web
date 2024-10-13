@@ -29,7 +29,7 @@
 
     <title>@ViewData["Title"] - edu</title>
 
-@*     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    @*     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="https://cdn.kendostatic.com/2022.1.119/styles/kendo.default-nordic.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.kendostatic.com/2022.1.119/js/jquery.min.js"></script>
@@ -59,259 +59,7 @@
                             </a>
                         </div>
                         <component type="typeof(Menucat)" render-mode="ServerPrerendered" />
-                        <ul class="nav header-navbar-rht">
-                            <li class="nav-item">
-                                <a href="course-message.html"><img src="~/template/html/assets/img/icon/messages.svg" alt="img"></a>
-                            </li>
-                            <li class="nav-item cart-nav">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <img src="~/template/html/assets/img/icon/cart.svg" alt="img">
-                                </a>
-                                <div class="wishes-list dropdown-menu dropdown-menu-right">
-                                    <div class="wish-header">
-                                        <a href="#">View Cart</a>
-                                        <a href="javascript:void(0)" class="float-end">Checkout</a>
-                                    </div>
-                                    <div class="wish-content">
-                                        <ul>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-04.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">Learn Angular...</a></h6>
-                                                            <p>By Dave Franco</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-14.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">Build Responsive Real...</a></h6>
-                                                            <p>Jenis R.</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-15.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">C# Developers Double ...</a></h6>
-                                                            <p>Jesse Stevens</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="total-item">
-                                            <h6>Subtotal : $ 600</h6>
-                                            <h5>Total : $ 600</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item wish-nav">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <img src="~/template/html/assets/img/icon/wish.svg" alt="img">
-                                </a>
-                                <div class="wishes-list dropdown-menu dropdown-menu-right">
-                                    <div class="wish-content">
-                                        <ul>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-04.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">Learn Angular...</a></h6>
-                                                            <p>By Dave Franco</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                            <div class="remove-btn">
-                                                                <a href="#" class="btn">Add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-14.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">Build Responsive Real...</a></h6>
-                                                            <p>Jenis R.</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                            <div class="remove-btn">
-                                                                <a href="#" class="btn">Add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-15.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">C# Developers Double ...</a></h6>
-                                                            <p>Jesse Stevens</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                            <div class="remove-btn">
-                                                                <a href="#" class="btn">Remove</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item noti-nav">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <img src="~/template/html/assets/img/icon/notification.svg" alt="img">
-                                </a>
-                                <div class="notifications dropdown-menu dropdown-menu-right">
-                                    <div class="topnav-dropdown-header">
-                                        <span class="notification-title">
-                                            Notifications
-                                            <select>
-                                                <option>All</option>
-                                                <option>Unread</option>
-                                            </select>
-                                        </span>
-                                        <a href="javascript:void(0)" class="clear-noti">Mark all as read <i class="fa-solid fa-circle-check"></i></a>
-                                    </div>
-                                    <div class="noti-content">
-                                        <ul class="notification-list">
-                                            <li class="notification-message">
-                                                <div class="media d-flex">
-                                                    <div>
-                                                        <a href="notifications.html" class="avatar">
-                                                            <img class="avatar-img" alt="" src="~/template/html/assets/img/user/user1.jpg">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6><a href="notifications.html">Lex Murphy requested <span>access to</span> UNIX directory tree hierarchy </a></h6>
-                                                        <button class="btn btn-accept">Accept</button>
-                                                        <button class="btn btn-reject">Reject</button>
-                                                        <p>Today at 9:42 AM</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="notification-message">
-                                                <div class="media d-flex">
-                                                    <div>
-                                                        <a href="notifications.html" class="avatar">
-                                                            <img class="avatar-img" alt="" src="~/template/html/assets/img/user/user2.jpg">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6><a href="notifications.html">Ray Arnold left 6 <span>comments on</span> Isla Nublar SOC2 compliance report</a></h6>
-                                                        <p>Yesterday at 11:42 PM</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="notification-message">
-                                                <div class="media d-flex">
-                                                    <div>
-                                                        <a href="notifications.html" class="avatar">
-                                                            <img class="avatar-img" alt="" src="~/template/html/assets/img/user/user3.jpg">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6><a href="notifications.html">Dennis Nedry <span>commented on</span> Isla Nublar SOC2 compliance report</a></h6>
-                                                        <p class="noti-details">“Oh, I finished de-bugging the phones, but the system's compiling for eighteen minutes, or twenty. So, some minor systems may go on and off for a while.”</p>
-                                                        <p>Yesterday at 5:42 PM</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="notification-message">
-                                                <div class="media d-flex">
-                                                    <div>
-                                                        <a href="notifications.html" class="avatar">
-                                                            <img class="avatar-img" alt="" src="~/template/html/assets/img/user/user1.jpg">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6><a href="notifications.html">John Hammond <span>created</span> Isla Nublar SOC2 compliance report </a></h6>
-                                                        <p>Last Wednesday at 11:15 AM</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item user-nav">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <span class="user-img">
-                                        <img src="~/template/html/assets/img/user/user11.jpg" alt="">
-                                        <span class="status online"></span>
-                                    </span>
-                                </a>
-                                <div class="users dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
-                                    <div class="user-header">
-                                        <div class="avatar avatar-sm">
-                                            <img src="~/template/html/assets/img/user/user11.jpg" alt="User Image" class="avatar-img rounded-circle">
-                                        </div>
-                                        <div class="user-text">
-                                            <h6>@User.FindFirst(ClaimTypes.Name)?.Value</h6>
-                                            <p class="text-muted mb-0">@User.FindFirst(ClaimTypes.Role)?.Value</p>
-                                        </div>
-                                    </div>
-                                    <a class="dropdown-item" href="~/student/settingeditprofile"><i class="feather-user me-1"></i> Профайл</a>
-                                    <a class="dropdown-item" href="~/student/settingstudentsubscription"><i class="feather-star me-1"></i> Захиалга</a>
-                                 @*    <div class="dropdown-item night-mode">
-                                        <span><i class="feather-moon me-1"></i> Night Mode </span>
-                                        <div class="form-check form-switch check-on m-0">
-                                            <input class="form-check-input" type="checkbox" id="night-mode">
-                                        </div>
-                                    </div> *@
-                                    <a class="dropdown-item" href="~/home/logout"><i class="feather-log-out me-1"></i> Гарах</a>
-                                </div>
-                            </li>
-                        </ul>
+                      
                     </div>
                 </nav>
             </div>
@@ -320,107 +68,18 @@
 
         <div class="page-content">
             <div class="container">
-                <div class="row">
-
-                    <div class="col-xl-3 col-md-4 theiaStickySidebar">
-                        <div class="settings-widget dash-profile mb-3">
-                            <div class="settings-menu p-0">
-                                <div class="profile-bg">
-                                    <h5>Анхан</h5>
-                                    <img src="~/template/html/assets/img/profile-bg.jpg" alt="">
-                                    <div class="profile-img">
-                                        <a href="~/student/studentprofile"><img src="~/template/html/assets/img/user/user11.jpg" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="profile-group">
-                                    <div class="profile-name text-center">
-                                        <h4><a href="~/student/studentprofile">@User.FindFirst(ClaimTypes.Name)?.Value</a></h4>
-                                        <p>@User.FindFirst(ClaimTypes.Role)?.Value</p>
-                                    </div>
-                                    <div class="go-dashboard text-center">
-                                        <a href="~/student/depositstudentdashboard" class="btn btn-primary">Сурах</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="settings-widget account-settings">
-                            <div class="settings-menu">
-                                <h3>Тохиргоо</h3>
-                                <ul>
-                                    <li class="nav-item ">
-                                        <a href="~/student/settingeditprofile" class="nav-link">
-                                            <i class="feather-settings"></i> Профайл
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="~/student/settingstudentsecurity" class="nav-link">
-                                            <i class="feather-user"></i> Нууц үг
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="~/student/settingstudentsocialprofile" class="nav-link">
-                                            <i class="feather-refresh-cw"></i> Олон нийтийн сүлжээ
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="~/home/logout" class="nav-link">
-                                            <i class="feather-power"></i> Гарах
-                                        </a>
-                                    </li>
-                                </ul>
-                                <h3>Захиалга</h3>
-                                <ul>
-                                    <li class="nav-item">
-                                        <a href="~/student/settingstudentsubscription" class="nav-link ">
-                                            <i class="feather-calendar"></i> Миний захиалга
-                                        </a>
-                                    </li>
-                               
-                                    <li class="nav-item">
-                                        <a href="~/student/settingstudentpayment" class="nav-link">
-                                            <i class="feather-credit-card"></i> Төлбөр
-                                        </a>
-                                    </li>
-                                  
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-xl-9 col-lg-8 col-md-12">
+          
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="settings-widget">
+                                    @RenderBody()
 
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                    <div class="widget-set">
-
-                                                        <div class="widget-content multistep-form">
-                                                            <fieldset id="first">
-                                                                <div class="add-course-form">
-                                                                    <br />
-                                                                    @RenderBody()
-                                                                </div>
-                                                            </fieldset>
-                                                            </<div></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                             
                                 </div>
                             </div>
                         </div>
 
-                    </div>
-
-                </div>
+                   
             </div>
         </div>
 
@@ -446,11 +105,11 @@
                             <div class="footer-widget footer-menu">
                                 <h2 class="footer-title">For Instructor</h2>
                                 <ul>
-                                    <li><a href="instructor-profile.html">Profile</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="instructor-list.html">Instructor</a></li>
-                                    <li><a href="deposit-instructor-dashboard.html"> Dashboard</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#">Register</a></li>
+                                    <li><a href="#">Instructor</a></li>
+                                    <li><a href="#"> Dashboard</a></li>
                                 </ul>
                             </div>
 
@@ -460,11 +119,11 @@
                             <div class="footer-widget footer-menu">
                                 <h2 class="footer-title">For Student</h2>
                                 <ul>
-                                    <li><a href="student-profile.html">Profile</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="students-list.html">Student</a></li>
-                                    <li><a href="deposit-student-dashboard.html"> Dashboard</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#">Register</a></li>
+                                    <li><a href="#">Student</a></li>
+                                    <li><a href="#"> Dashboard</a></li>
                                 </ul>
                             </div>
 
@@ -525,7 +184,7 @@
             </div>
 
         </footer>
-        
+
 
     </div>
 
@@ -533,7 +192,7 @@
 
 
 
-@* 
+    @*
     <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> *@
     <script src="~/template/html/assets/js/jquery-3.7.1.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
@@ -554,8 +213,8 @@
     <script src="~/template/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer=""></script>
 
     @* <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer="">
-     *@    
-    
+    *@
+
     </script>
 </body>
 

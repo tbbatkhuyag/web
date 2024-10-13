@@ -53,9 +53,25 @@ namespace edu.Controllers
 
             }
             return _context.Lessons != null ?
-                       //   View(await _context.Lessons.Where(vs => vs.GId ==Convert.ToUInt32(_sid)).ToListAsync()) :
+                          View(await _context.Lessons.Where(vs => vs.GId ==Convert.ToUInt32(id)).ToListAsync()) :
                         
-                          View(await _context.Lessons.ToListAsync()) :
+                          //View(await _context.Lessons.ToListAsync()) :
+                          Problem("Entity set 'edu_portal_dbContext.Lessons'  is null.");
+        }
+
+        public async Task<IActionResult> Indexstudentpub(int id)
+        {
+            if (id != null)
+            {
+                 TempData["id"] = id;
+                 ViewBag.name = _context.GroupLessons.First(vs => vs.Id == Convert.ToInt32(TempData["id"])).Name.ToString();
+
+            }
+            return _context.Lessons != null ?
+                          //   View(await _context.Lessons.Where(vs => vs.GId ==Convert.ToUInt32(_sid)).ToListAsync()) :
+                          View(await _context.Lessons.Where(vs => vs.GId == Convert.ToUInt32(TempData["id"])).ToListAsync()) :
+
+                        //  View(await _context.Lessons.ToListAsync()) :
                           Problem("Entity set 'edu_portal_dbContext.Lessons'  is null.");
         }
 
