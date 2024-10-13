@@ -30,7 +30,7 @@
 
     <title>@ViewData["Title"] - edu</title>
 
-@*     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    @*     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="https://cdn.kendostatic.com/2022.1.119/styles/kendo.default-nordic.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.kendostatic.com/2022.1.119/js/jquery.min.js"></script>
@@ -64,381 +64,130 @@
                             </a>
                         </div>
                         <component type="typeof(Menucat)" render-mode="ServerPrerendered" />
-                    
-                        <ul class="nav header-navbar-rht">
-                            <li class="nav-item">
-                                <a href="~/Teacher/instructor-chat.html"><img src="~/template/html/assets/img/icon/messages.svg" alt="img"></a>
-                            </li>
-                            <li class="nav-item cart-nav">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <img src="~/template/html/assets/img/icon/cart.svg" alt="img">
-                                </a>
-                                <div class="wishes-list dropdown-menu dropdown-menu-right">
-                                    <div class="wish-header">
-                                        <a href="#">View Cart</a>
-                                        <a href="javascript:void(0)" class="float-end">Checkout</a>
-                                    </div>
-                                    <div class="wish-content">
-                                        <ul>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-04.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">Learn Angular...</a></h6>
-                                                            <p>By Dave Franco</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-14.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">Build Responsive Real...</a></h6>
-                                                            <p>Jenis R.</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-15.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">C# Developers Double ...</a></h6>
-                                                            <p>Jesse Stevens</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="total-item">
-                                            <h6>Subtotal : $ 600</h6>
-                                            <h5>Total : $ 600</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item wish-nav">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <img src="~/template/html/assets/img/icon/wish.svg" alt="img">
-                                </a>
-                                <div class="wishes-list dropdown-menu dropdown-menu-right">
-                                    <div class="wish-content">
-                                        <ul>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-04.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">Learn Angular...</a></h6>
-                                                            <p>By Dave Franco</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                            <div class="remove-btn">
-                                                                <a href="#" class="btn">Add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-14.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">Build Responsive Real...</a></h6>
-                                                            <p>Jenis R.</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                            <div class="remove-btn">
-                                                                <a href="#" class="btn">Add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex media-wide">
-                                                        <div class="avatar">
-                                                            <a href="course-details.html">
-                                                                <img alt="" src="~/template/html/assets/img/course/course-15.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h6><a href="course-details.html">C# Developers Double ...</a></h6>
-                                                            <p>Jesse Stevens</p>
-                                                            <h5>$200 <span>$99.00</span></h5>
-                                                            <div class="remove-btn">
-                                                                <a href="#" class="btn">Remove</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item noti-nav">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <img src="~/template/html/assets/img/icon/notification.svg" alt="img">
-                                </a>
-                                <div class="notifications dropdown-menu dropdown-menu-right">
-                                    <div class="topnav-dropdown-header">
-                                        <span class="notification-title">
-                                            Notifications
-                                            <select>
-                                                <option>All</option>
-                                                <option>Unread</option>
-                                            </select>
-                                        </span>
-                                        <a href="javascript:void(0)" class="clear-noti">Mark all as read <i class="fa-solid fa-circle-check"></i></a>
-                                    </div>
-                                    <div class="noti-content">
-                                        <ul class="notification-list">
-                                            <li class="notification-message">
-                                                <div class="media d-flex">
-                                                    <div>
-                                                        <a href="notifications.html" class="avatar">
-                                                            <img class="avatar-img" alt="" src="~/template/html/assets/img/user/user1.jpg">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6><a href="notifications.html">Lex Murphy requested <span>access to</span> UNIX directory tree hierarchy </a></h6>
-                                                        <button class="btn btn-accept">Accept</button>
-                                                        <button class="btn btn-reject">Reject</button>
-                                                        <p>Today at 9:42 AM</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="notification-message">
-                                                <div class="media d-flex">
-                                                    <div>
-                                                        <a href="notifications.html" class="avatar">
-                                                            <img class="avatar-img" alt="" src="~/template/html/assets/img/user/user2.jpg">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6><a href="notifications.html">Ray Arnold left 6 <span>comments on</span> Isla Nublar SOC2 compliance report</a></h6>
-                                                        <p>Yesterday at 11:42 PM</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="notification-message">
-                                                <div class="media d-flex">
-                                                    <div>
-                                                        <a href="notifications.html" class="avatar">
-                                                            <img class="avatar-img" alt="" src="~/template/html/assets/img/user/user3.jpg">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6><a href="notifications.html">Dennis Nedry <span>commented on</span> Isla Nublar SOC2 compliance report</a></h6>
-                                                        <p class="noti-details">“Oh, I finished de-bugging the phones, but the system's compiling for eighteen minutes, or twenty. So, some minor systems may go on and off for a while.”</p>
-                                                        <p>Yesterday at 5:42 PM</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="notification-message">
-                                                <div class="media d-flex">
-                                                    <div>
-                                                        <a href="notifications.html" class="avatar">
-                                                            <img class="avatar-img" alt="" src="~/template/html/assets/img/user/user1.jpg">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6><a href="notifications.html">John Hammond <span>created</span> Isla Nublar SOC2 compliance report </a></h6>
-                                                        <p>Last Wednesday at 11:15 AM</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item user-nav">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <span class="user-img">
-                                        <img src="~/template/html/assets/img/instructor/profile-avatar.jpg" alt="">
-                                        <span class="status online"></span>
-                                    </span>
-                                </a>
-                                <div class="users dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
-                                    <div class="user-header">
-                                        <div class="avatar avatar-sm">
-                                            <img src="~/template/html/assets/img/instructor/profile-avatar.jpg" alt="User Image" class="avatar-img rounded-circle">
-                                        </div>
-                                        <div class="user-text">
-                                            <h6>@User.FindFirst(ClaimTypes.Name)?.Value</h6>
-                                            <p class="text-muted mb-0">@User.FindFirst(ClaimTypes.Role)?.Value</p>
-                                        </div>
-                                    </div>
-                                    <a class="dropdown-item" href="~/Teacher/instructor-dashboard.html"><i class="feather-home me-1"></i> Dashboard</a>
-                                    <a class="dropdown-item" href="~/Teacher/instructor-edit-profile.html"><i class="feather-star me-1"></i> Edit Profile</a>
-                                    <div class="dropdown-item night-mode">
-                                        <span><i class="feather-moon me-1"></i> Night Mode </span>
-                                        <div class="form-check form-switch check-on m-0">
-                                            <input class="form-check-input" type="checkbox" id="night-mode">
-                                        </div>
-                                    </div>
-                                    <a class="dropdown-item" href="~/home/logout"><i class="feather-log-out me-1"></i> Logout</a>
-                                </div>
-                            </li>
-                        </ul>
+
+
                     </div>
                 </nav>
             </div>
         </header>
 
-        @RenderBody()
         <div class="page-content">
             <div class="container">
                 <div class="row">
+                    @RenderBody()
 
-                 
+
+
+                </div>
             </div>
+
+
+            <footer class="footer">
+
+                <div class="footer-top aos" data-aos="fade-up">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+
+                                <div class="footer-widget footer-about">
+                                    <div class="footer-logo">
+                                        <img src="~/template/html/assets/img/logo.svg" alt="logo">
+                                    </div>
+                                    <div class="footer-about-content">
+                                        <p>Мөрөөдөлд хүрэх ганц зам бол сурах</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-6">
+
+                                <div class="footer-widget footer-menu">
+                                    <h2 class="footer-title">For Instructor</h2>
+                                    <ul>
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Login</a></li>
+                                        <li><a href="#">Register</a></li>
+                                        <li><a href="#">Instructor</a></li>
+                                        <li><a href="#"> Dashboard</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-6">
+
+                                <div class="footer-widget footer-menu">
+                                    <h2 class="footer-title">For Student</h2>
+                                    <ul>
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Login</a></li>
+                                        <li><a href="#">Register</a></li>
+                                        <li><a href="#">Student</a></li>
+                                        <li><a href="#"> Dashboard</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+
+                                <div class="footer-widget footer-contact">
+                                    <h2 class="footer-title">News letter</h2>
+                                    <div class="news-letter">
+                                        <form>
+                                            <input type="text" class="form-control" placeholder="Enter your email address" name="email">
+                                        </form>
+                                    </div>
+                                    <div class="footer-contact-info">
+                                        <div class="footer-address">
+                                            <img src="~/template/html/assets/img/icon/icon-20.svg" alt="" class="img-fluid">
+                                            <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                        </div>
+                                        <p>
+                                            <img src="~/template/html/assets/img/icon/icon-19.svg" alt="" class="img-fluid">
+                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c8acbaada9a5bba4a5bb88adb0a9a5b8a4ade6aba7a5">[email&#160;protected]</a>
+                                        </p>
+                                        <p class="mb-0">
+                                            <img src="~/template/html/assets/img/icon/icon-21.svg" alt="" class="img-fluid">
+                                            8989889
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="footer-bottom">
+                    <div class="container">
+
+                        <div class="copyright">
+                            <div class="row">
+                                @*  <div class="col-md-6">
+                                <div class="privacy-policy">
+                                <ul>
+                                <li><a href="term-condition.html">Terms</a></li>
+                                <li><a href="privacy-policy.html">Privacy</a></li>
+                                </ul>
+                                </div>
+                                </div> *@
+                                <div class="col-md-6">
+                                    <div class="copyright-text">
+                                        <p class="mb-0">&copy; @DateTime.Now.Year  DreamsLMS. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </footer>
+
         </div>
 
-
-        <footer class="footer">
-
-            <div class="footer-top aos" data-aos="fade-up">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-
-                            <div class="footer-widget footer-about">
-                                <div class="footer-logo">
-                                    <img src="~/template/html/assets/img/logo.svg" alt="logo">
-                                </div>
-                                <div class="footer-about-content">
-                                    <p>Мөрөөдөлд хүрэх ганц зам бол сурах</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-2 col-md-6">
-
-                            <div class="footer-widget footer-menu">
-                                <h2 class="footer-title">For Instructor</h2>
-                                <ul>
-                                    <li><a href="instructor-profile.html">Profile</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="instructor-list.html">Instructor</a></li>
-                                    <li><a href="deposit-instructor-dashboard.html"> Dashboard</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-2 col-md-6">
-
-                            <div class="footer-widget footer-menu">
-                                <h2 class="footer-title">For Student</h2>
-                                <ul>
-                                    <li><a href="student-profile.html">Profile</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="students-list.html">Student</a></li>
-                                    <li><a href="deposit-student-dashboard.html"> Dashboard</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-
-                            <div class="footer-widget footer-contact">
-                                <h2 class="footer-title">News letter</h2>
-                                <div class="news-letter">
-                                    <form>
-                                        <input type="text" class="form-control" placeholder="Enter your email address" name="email">
-                                    </form>
-                                </div>
-                                <div class="footer-contact-info">
-                                    <div class="footer-address">
-                                        <img src="~/template/html/assets/img/icon/icon-20.svg" alt="" class="img-fluid">
-                                        <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
-                                    </div>
-                                    <p>
-                                        <img src="~/template/html/assets/img/icon/icon-19.svg" alt="" class="img-fluid">
-                                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c8acbaada9a5bba4a5bb88adb0a9a5b8a4ade6aba7a5">[email&#160;protected]</a>
-                                    </p>
-                                    <p class="mb-0">
-                                        <img src="~/template/html/assets/img/icon/icon-21.svg" alt="" class="img-fluid">
-                                        8989889
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="footer-bottom">
-                <div class="container">
-
-                    <div class="copyright">
-                        <div class="row">
-                            @*  <div class="col-md-6">
-                            <div class="privacy-policy">
-                            <ul>
-                            <li><a href="term-condition.html">Terms</a></li>
-                            <li><a href="privacy-policy.html">Privacy</a></li>
-                            </ul>
-                            </div>
-                            </div> *@
-                            <div class="col-md-6">
-                                <div class="copyright-text">
-                                    <p class="mb-0">&copy; @DateTime.Now.Year  DreamsLMS. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </footer>
-
     </div>
-
-
-@* 
+    @*
     <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> *@
     <script src="~/template/html/assets/js/jquery-3.7.1.min.js" type="5ddc36a48d7b03418e2b0113-text/javascript"></script>
 
@@ -459,9 +208,8 @@
     <script src="~/template/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer=""></script>
 
     @* <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ddc36a48d7b03418e2b0113-|49" defer="">
-     *@    
-    
-    </script>
+    *@
+
 </body>
 
 @RenderSection("Scripts", required: false)

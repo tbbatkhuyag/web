@@ -6,75 +6,25 @@
 }
 
 
-<div class="settings-inner-blk p-0">
-    <div class="sell-course-head comman-space">
-        <h3>Хичээлүүд</h3>
-  
-    </div>
-    <div class="comman-space pb-0">
- 
-        <div class="settings-tickets-blk course-instruct-blk table-responsive">
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
-            <table class="table">
-            
-              
-            </table>
+<div class="container">
+    <div class="row">
+               @foreach (var item in Model)
+                            {
+                                <div class="col-lg-4">
 
-            <table class="table table-nowrap mb-2">
-                <thead>
-                    <tr>
-                        <th>COURSES</th>
-                        <th>STUDENTS</th>
-                        <th>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody>
+                                            <div class="category-box">
+                                                <div class="category-title">  <div class="category-img">
+                                                    <img src="~/template/html/assets/img/category/category-01.jpg" alt="">
 
-            
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-
-
-                            <td>
-                                <div class="sell-table-group d-flex align-items-center">
-                                    <div class="sell-group-img">
-                                        <a href="course-details.html">
-                                            <img src="~/template/html/assets/img/course/course-10.jpg" class="img-fluid " alt="">
-                                        </a>
-                                    </div>
-                                    <div class="sell-tabel-info">
-                                        <p><a href="course-details.html"> @Html.DisplayFor(modelItem => item.Name)</a></p>
-                                        <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
-                                            <div class="rating-img d-flex align-items-center">
-                                                <img src="~/template/html/assets/img/icon/icon-01.svg" alt="">
-                                                <p>10+ Lesson</p>
+                                                    </div>
+                        <h5> <a asp-controller="lessons" asp-action="indexstudentpub" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a> </h5>
+                                                </div>
+                                                <div class="cat-count">
+                                                    <span>25</span>
+                                                </div>
                                             </div>
-                                            <div class="course-view d-flex align-items-center">
-                                                <img src="~/template/html/assets/img/icon/timer-start.svg" alt="">
-                                              
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                            </td>
-                            <td>3200</td>
-                            <td>
-                                <a asp-controller="lessons" asp-action="indexstudent" asp-route-id="@item.Id">Үзэх</a> 
-                            </td>
+                            }
 
-
-
-                
-                        </tr>
-                        }
-               
-               
-                </tbody>
-            </table>
-
-        </div>
     </div>
 </div>
