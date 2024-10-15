@@ -31,7 +31,7 @@ namespace edu.Controllers
                 TempData["newsid"] = sid;
                 ViewData["newsid"] = sid;
             }
-            var edu_portal_dbContext = _context.NewsLists.Where(v=>v.CatId ==sid).Include(n => n.Cat);
+            var edu_portal_dbContext = _context.NewsLists.Where(v=>v.CatId ==sid);
             return View(await edu_portal_dbContext.ToListAsync());
         }
         public async Task<IActionResult> list(int? id)
@@ -41,7 +41,7 @@ namespace edu.Controllers
                 TempData["newsid"] = id;
                 ViewData["newsid"] = id;
             }
-            var edu_portal_dbContext = _context.NewsLists.Where(v => v.CatId == id).Include(n => n.Cat);
+            var edu_portal_dbContext = _context.NewsLists.Where(v => v.CatId == id);
             return View(await edu_portal_dbContext.ToListAsync());
         }
 
@@ -54,7 +54,7 @@ namespace edu.Controllers
             }
 
             var newsList = await _context.NewsLists
-                .Include(n => n.Cat)
+               
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (newsList == null)
             {
@@ -71,7 +71,7 @@ namespace edu.Controllers
             }
 
             var newsList = await _context.NewsLists
-                .Include(n => n.Cat)
+                //.Include(n => n.Cat)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (newsList == null)
             {
@@ -186,7 +186,7 @@ namespace edu.Controllers
             }
 
             var newsList = await _context.NewsLists
-                .Include(n => n.Cat)
+                //.Include(n => n.Cat)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (newsList == null)
             {

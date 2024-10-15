@@ -2,19 +2,30 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace edu.Models
 {
     public partial class NewsList
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Агуулга оруулна уу!")]
+        [Display(Name = "Агуулга нэр ")]
         public string Txtname { get; set; }
+        [Display(Name = "Товч агуулга ")]
         public string Txtmore { get; set; }
+        [Display(Name = "Үндсэн агуулга ")]
+
         public string Txtcontent { get; set; }
+        [Display(Name = "Огноо ")]
+
         public string Txtdate { get; set; }
+        [Display(Name = "Цэс ")]
+
         public int? CatId { get; set; }
+        [Display(Name = "Огноо ")]
+
         public DateTime? Txtdatetime { get; set; }
 
-        public virtual NewsCat Cat { get; set; }
     }
 }

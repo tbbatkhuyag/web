@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace edu.Models
 {
@@ -13,14 +14,27 @@ namespace edu.Models
         }
 
         public int Id { get; set; }
+        [Required(ErrorMessage = "Категори нэр ээ оруулна уу!")]
+        [Display(Name = "Категори нэр ")]
         public string Txtname { get; set; }
+        [Display(Name = "Дараалал ")]
         public int? TxtOrd { get; set; }
+        [Display(Name = "Товч ")]
         public string Txtmore { get; set; }
+        [Display(Name = "Агуулга ")]
         public string Txtcontent { get; set; }
         public int? SubId { get; set; }
+        [Display(Name = "Огноо ")]
+
         public DateTime? TxtDate { get; set; }
+        [Display(Name = "Төрөл ")]
+
         public int? Txttype { get; set; }
+        [Display(Name = "Холбоос ")]
+
         public string Txtlink { get; set; }
+        [Display(Name = "Нуух эсэх ")]
+
         public long? Vis { get; set; }
 
         public virtual ICollection<NewsList> NewsLists { get; set; }

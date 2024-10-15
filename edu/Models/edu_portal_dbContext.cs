@@ -210,10 +210,10 @@ namespace edu.Models
                     .HasMaxLength(250)
                     .HasColumnName("txtname");
 
-                entity.HasOne(d => d.Cat)
-                    .WithMany(p => p.NewsLists)
-                    .HasForeignKey(d => d.CatId)
-                    .HasConstraintName("FK_news_list_news_cat");
+                //entity.HasOne(d => d.Cat)
+                //    .WithMany(p => p.NewsLists)
+                //    .HasForeignKey(d => d.CatId)
+                //    .HasConstraintName("FK_news_list_news_cat");
             });
 
             modelBuilder.Entity<University>(entity =>
