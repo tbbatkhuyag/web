@@ -2,16 +2,22 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace edu.Models
 {
     public partial class GroupLesson
     {
         public int Id { get; set; }
+        [Display(Name = "Хичээлийн нэр")]
+        [Required(ErrorMessage = "Хичээлийн нэр оруулна уу!")]
+
         public string Name { get; set; }
+        [Display(Name = "Лого")]
         public string Logo { get; set; }
         public int? TeacherId { get; set; }
         public int? UniId { get; set; }
         public DateTime? Txtdatetime { get; set; }
+
     }
 }
