@@ -12,28 +12,45 @@
     <h4>Lesson</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+      
+        <dd class = "col-sm-12">
             @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
+               <hr />
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ViewMinut)
-        </dt>
-        <dd class = "col-sm-10">
+     
+        <dd class="col-sm-12">
+            @Html.DisplayNameFor(model => model.ViewMinut)<hr />
             @Html.DisplayFor(model => model.ViewMinut)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Txtmore)
-        </dt>
-        <dd class = "col-sm-10">
+      
+        <dd class="col-sm-12">
+            @Html.DisplayNameFor(model => model.Txtmore)<hr />
             @Html.Raw(HttpUtility.HtmlDecode(Model.Txtmore))
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Txtcontent)
 
-        </dt>
+        <dd class="col-sm-12">
+            @Html.DisplayNameFor(model => model.Txtcontent)<hr />
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Txtcontent))
+        </dd>
+
+        <dd class="col-sm-12">
+            @Html.DisplayNameFor(model => model.Txtvoice)<hr />
+            <video width="320" height="240" controls>
+                <source src="@Model.Txtvoice" type="video/mp4">
+            </video>
+        </dd>
+        <dd class="col-sm-12">
+            @Html.DisplayNameFor(model => model.Txtvideo)<hr />
+            <video width="320" height="240" controls>
+                <source src="@Model.Txtvideo" type="video/mp4">
+            </video>
+        </dd>
+    
+
+
+
+        
         <dd class = "col-sm-10">
            
             @Html.Raw(HttpUtility.HtmlDecode(Model.Txtcontent))

@@ -32,8 +32,7 @@
                     .Name("Txtmore")
                     .HtmlAttributes(new { style = "width: 100%; height:300px" })
                     .StyleSheets(css => css
-                    .Add(Url.Content("~/shared/web/editor/editorStyles.css"))
-                    )
+                    .Add(Url.Content("~/shared/web/editor/editorStyles.css")))
                     .Tools(tools => tools
                     .Clear()
                     .Bold().Italic().Underline()
@@ -48,10 +47,7 @@
                     .ForeColor().BackColor()
                     )
                     .ImageBrowser(imageBrowser => imageBrowser
-                    .Image("~/shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "//{0}")
-
-
-
+                    .Image("~/shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/{0}")
                     .Read("Read", "ImageBrowser")
                     .Create("Create", "ImageBrowser")
                     .Destroy("Destroy", "ImageBrowser")
@@ -141,7 +137,7 @@
                     .SaveField("files")
 
                     )
-                    .Validation(validation => validation.AllowedExtensions(new string[] { ".docx" }))
+                    .Validation(validation => validation.AllowedExtensions(new string[] { ".mp3" }))
                     .Multiple(false)
                     .TemplateId("Txtvoice")
                     .Events(events => events.Select("onSelect1"))
@@ -159,7 +155,7 @@
                     .SaveField("files")
 
                     )
-                    .Validation(validation => validation.AllowedExtensions(new string[] { ".docx" }))
+                    .Validation(validation => validation.AllowedExtensions(new string[] { ".mp4", ".wav" }))
                     .Multiple(false)
                     .TemplateId("Txtvideo")
                     .Events(events => events.Select("onSelect"))
@@ -171,7 +167,7 @@
                 function onSelect(e) {
                     var fileName = e.files[0].name;  // Get the name of the first file
                     console.log("Selected file name: " + fileName);
-
+                
                     // Display the file name in an HTML element (optional)
                     document.getElementById("Txtvideo").setAttribute('value', fileName);
                     //  $("#Txtvideo").text(fileName);

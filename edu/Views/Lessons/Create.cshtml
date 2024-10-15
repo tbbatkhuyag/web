@@ -142,7 +142,7 @@
                     .SaveField("files")
                     
                     )
-                    .Validation(validation => validation.AllowedExtensions(new string[] { ".docx" }))
+                    .Validation(validation => validation.AllowedExtensions(new string[] { ".mp3" }))
                     .Multiple(false)
                     .TemplateId("Txtvoice")
                     .Events(events => events.Select("onSelect1"))
@@ -160,7 +160,7 @@
                     .SaveField("files")
 
                     )
-                    .Validation(validation => validation.AllowedExtensions(new string[] { ".docx" }))
+                    .Validation(validation => validation.AllowedExtensions(new string[] { ".mp4", ".wav" }))
                     .Multiple(false)
                     .TemplateId("Txtvideo")
                     .Events(events => events.Select("onSelect"))

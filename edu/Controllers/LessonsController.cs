@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using System.Web;
 using Kendo.Mvc.Extensions;
+using System.Data;
 
 namespace edu.Controllers
 {
@@ -120,7 +121,9 @@ namespace edu.Controllers
                 var id = User.FindFirst(ClaimTypes.Dns)?.Value;
                 lesson.GId =Convert.ToInt32(gid);
                 lesson.TeacherId =Convert.ToInt32(id);
-               
+                lesson.Txtvoice = "../../shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/"+ lesson.Txtvoice;
+                lesson.Txtvideo = "../../shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/" + lesson.Txtvideo;
+
                 _context.Add(lesson);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index), new { id = TempData["id"] });
@@ -172,8 +175,11 @@ namespace edu.Controllers
             {
                 try
                 {
-                 //   lesson.GId = Convert.ToInt32(TempData["id"]);
-                  
+                    //   lesson.GId = Convert.ToInt32(TempData["id"]);
+
+                    lesson.Txtvoice = "../../shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value +"/"+ lesson.Txtvoice;
+                    lesson.Txtvideo = "../../shared/UserFiles/images/" + User.FindFirst(ClaimTypes.Name)?.Value + "/" + lesson.Txtvideo;
+
                     _context.Update(lesson);
                     _context.Entry(lesson).Property(v => v.GId).IsModified = false;
                     _context.Entry(lesson).Property(v => v.TeacherId).IsModified = false;
