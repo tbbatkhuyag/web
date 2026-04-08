@@ -26,23 +26,48 @@ namespace edu.Controllers
         // GET: NewsLists
         public async Task<IActionResult> Index(int? sid)
         {
+            IQueryable<NewsList> edu_portal_dbContext;
+
             if (sid != null && sid != 0)
             {
                 TempData["newsid"] = sid;
                 ViewData["newsid"] = sid;
+
+                edu_portal_dbContext = _context.NewsLists.Where(v => v.NewsCatId == sid.Value);
             }
-            var edu_portal_dbContext = _context.NewsLists.Where(v=>v.CatId ==sid);
+            else
+            {
+                edu_portal_dbContext = _context.NewsLists;
+            }
+
             return View(await edu_portal_dbContext.ToListAsync());
         }
         public async Task<IActionResult> list(int? id)
         {
+            try
+            {
+                IQueryable<NewsList> edu_portal_dbContext;
+
             if (id != null && id != 0)
             {
                 TempData["newsid"] = id;
                 ViewData["newsid"] = id;
+
+                edu_portal_dbContext = _context.NewsLists.Where(v => v.NewsCatId == id.Value);
             }
-            var edu_portal_dbContext = _context.NewsLists.Where(v => v.CatId == id);
+            else
+            {
+                edu_portal_dbContext = _context.NewsLists;
+            }
+
             return View(await edu_portal_dbContext.ToListAsync());
+            }
+            catch (Exception ex)
+            {
+                // Алдааг log хийнэ
+                Console.WriteLine(ex.ToString());
+                return Content("Error: " + ex.Message); // Түр хугацаанд алдааг шууд харуулах
+            }
         }
 
         // GET: NewsLists/Details/5
@@ -98,11 +123,11 @@ namespace edu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Txtname,Txtmore,Txtcontent,Txtdate,CatId,Txtdatetime")] NewsList newsList)
+        public async Task<IActionResult> Create([Bind("Id,Txtname,Txtmore,Txtcontent,Txtdate,NewsCatId,Txtdatetime")] NewsList newsList)
         {
             if (ModelState.IsValid)
             {
-                newsList.CatId = Convert.ToInt32(TempData["newsid"]);
+                newsList.NewsCatId = Convert.ToInt32(TempData["newsid"]);
                 _context.Add(newsList);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index), new{ sid = TempData["newsid"] });
@@ -152,7 +177,7 @@ namespace edu.Controllers
             {
                 try
                 {
-                    _context.Update(newsList).Property(x => x.CatId).IsModified = false;
+                    _context.Update(newsList).Property(x => x.NewsCatId).IsModified = false;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

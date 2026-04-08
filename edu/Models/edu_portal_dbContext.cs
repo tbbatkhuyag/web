@@ -188,7 +188,7 @@ namespace edu.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.CatId).HasColumnName("cat_id");
+                entity.Property(e => e.NewsCatId).HasColumnName("cat_id");
 
                 entity.Property(e => e.Txtcontent)
                     .HasColumnType("ntext")

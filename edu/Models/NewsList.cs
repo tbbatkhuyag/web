@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace edu.Models
 {
@@ -22,10 +23,13 @@ namespace edu.Models
         public string Txtdate { get; set; }
         [Display(Name = "Цэс ")]
 
-        public int? CatId { get; set; }
+        [Column("cat_id")]
+        public int? NewsCatId { get; set; }
+
         [Display(Name = "Огноо ")]
 
         public DateTime? Txtdatetime { get; set; }
+
 
     }
 }

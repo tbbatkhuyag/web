@@ -4,15 +4,12 @@
 
 @foreach (var todo in Contex.NewsCats.Where(vs=>vs.SubId==null).OrderBy(vs=>vs.TxtOrd))
 {
-
     <li >
         <a href="/NewsCats/Edit/@todo.Id">
         <i class="ft-home"></i>
             <span class="menu-title">@todo.Txtname</span>
     </a>
         <ul>
-
-
             @foreach (var to in Contex.NewsCats.Where(vs => vs.SubId == todo.Id).OrderBy(vs => vs.TxtOrd))
             {
 
@@ -39,7 +36,6 @@
         </ul>
     </li>
 }
-
 
 @code {
 

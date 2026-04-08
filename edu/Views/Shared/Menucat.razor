@@ -3,39 +3,33 @@
 @using edu.Models
 @inject edu_portal_dbContext Contex
 
-<div class="main-menu-wrapper">
-    <div class="menu-header">
-        <a href="~/home/index" class="menu-logo">
-            <img src="~/template/html/assets/img/logo.svg" class="img-fluid" alt="Logo">
-        </a>
-        <a id="menu_close" class="menu-close" href="javascript:void(0);">
-            <i class="fas fa-times"></i>
-        </a>
-    </div>
-    <ul class="main-nav">
+
+<div class="kingster-navigation kingster-item-pdlr clearfix ">
+    <div class="kingster-main-menu" id="kingster-main-menu">
+    <ul id="menu-main-navigation-1" class="sf-menu">
 
         @foreach (var item in Contex.NewsCats.ToList().Where(vs=>vs.SubId==null&&vs.Vis==2).OrderBy(vs=>vs.TxtOrd))
         {
-            <li class="has-submenu">
+
+                <li  class="menu-item menu-item-has-children kingster-normal-menu">
                 @if(item.Txttype==1)
                 {
-                    <a href="/">@item.Txtname
-                        <i class="fas fa-chevron-down"></i></a>
+                    <a href="/" class="sf-with-ul-pre">@item.Txtname
+                        </a>
                 }
                 else
                 {
                     @if (item.Txttype == 2)
                     {
-                        <a href="/NewsCats/read/@item.Id">
+                        <a href="/NewsCats/read/@item.Id" class="sf-with-ul-pre">
                             @item.Txtname
-                            <i class="fas fa-chevron-down"></i>
                         </a>
                         }
                         else
                         {
                             @if (item.Txttype == 3)
                             {
-                            <a href="@item.Txtlink">@item.Txtname <i class="fas fa-chevron-down"></i></a>
+                            <a href="@item.Txtlink">@item.Txtname </a>
 
                             }
                             else
@@ -44,14 +38,14 @@
                                 {
                                 <a href="/NewsLists/list/@item.Id">
                                         @item.Txtname
-                                        <i class="fas fa-chevron-down"></i>
+                                    
                                     </a>
                                 }
                                 else
                                 {
                                     <a href="">
                                         @item.Txtname
-                                        <i class="fas fa-chevron-down"></i>
+                                      
                                     </a>
                                 }
 
@@ -61,7 +55,7 @@
                    
                 }
                         
-                 <ul class="submenu">
+                 <ul class="sub-menu">
 
                 @foreach (var it in Contex.NewsCats.ToList().Where(vs => vs.Vis == 2).OrderBy(vs => vs.TxtOrd))
                 {
@@ -70,7 +64,7 @@
                        
                             @if (it.Txttype == 1)
                             {
-                             <li>  <a href="/">
+                             <li  class="menu-item" >  <a href="/">
                                     @it.Txtname
                                     <i class="fas fa-chevron-down"></i>
                                     </a>
@@ -80,7 +74,7 @@
                             {
                                 @if (it.Txttype == 2)
                                 {
-                                    <li>
+                                    <li class="menu-item" >
                                         <a href="/NewsCats/read/@it.Id">
                                         @it.Txtname
                                         <i class="fas fa-chevron-down"></i>
@@ -91,14 +85,14 @@
                                 {
                                     @if (it.Txttype == 3)
                                     {
-                                        <li><a href="@it.Txtlink">@it.Txtname <i class="fas fa-chevron-down"></i></a></li>
+                                        <li class="menu-item" ><a href="@it.Txtlink">@it.Txtname <i class="fas fa-chevron-down"></i></a></li>
 
                                     }
                                     else
                                     {
                                         @if (it.Txttype == 4)
                                         {
-                                            <li>
+                                            <li class="menu-item" >
                                                 <a href="/NewsLists/list/@it.Id">
                                                 @it.Txtname
                                                 <i class="fas fa-chevron-down"></i>
@@ -107,7 +101,7 @@
                                         }
                                         else
                                         {
-                                            <li><a href="">
+                                            <li class="menu-item" ><a href="">
                                                 @it.Txtname
                                                 <i class="fas fa-chevron-down"></i>
                                                 </a>
@@ -144,111 +138,8 @@
 
 
 
-    @*     <li class="has-submenu active">
-            <a class="" href="">Home <i class="fas fa-chevron-down"></i></a>
-            <ul class="submenu">
-                <li class="active"><a href="~/home/index">Home</a></li>
-                <li><a href="index-two.html">Home Two</a></li>
-                <li><a href="index-three.html">Home Three</a></li>
-                <li><a href="index-four.html">Home Four</a></li>
-            </ul>
-        </li>
-        <li class="has-submenu">
-            <a href="">Instructor <i class="fas fa-chevron-down"></i></a>
-            <ul class="submenu">
-                <li><a href="instructor-dashboard.html">Dashboard</a></li>
-                <li class="has-submenu">
-                    <a href="instructor-list.html">Instructor</a>
-                    <ul class="submenu">
-                        <li><a href="instructor-list.html">List</a></li>
-                        <li><a href="instructor-grid.html">Grid</a></li>
-                    </ul>
-                </li>
-                <li><a href="instructor-course.html">My Course</a></li>
-                <li><a href="instructor-reviews.html">Reviews</a></li>
-                <li><a href="instructor-earnings.html">Earnings</a></li>
-                <li><a href="instructor-orders.html">Orders</a></li>
-                <li><a href="instructor-payouts.html">Payouts</a></li>
-                <li><a href="instructor-tickets.html">Support Ticket</a></li>
-                <li><a href="instructor-edit-profile.html">Instructor Profile</a></li>
-                <li><a href="instructor-security.html">Security</a></li>
-                <li><a href="instructor-social-profiles.html">Social Profiles</a></li>
-                <li><a href="instructor-notification.html">Notifications</a></li>
-                <li><a href="instructor-profile-privacy.html">Profile Privacy</a></li>
-                <li><a href="instructor-delete-profile.html">Delete Profile</a></li>
-                <li><a href="instructor-linked-account.html">Linked Accounts</a></li>
-            </ul>
-        </li>
-        <li class="has-submenu">
-            <a href="">Student <i class="fas fa-chevron-down"></i></a>
-            <ul class="submenu first-submenu">
-                <li class="has-submenu ">
-                    <a href="students-list.html">Student</a>
-                    <ul class="submenu">
-                        <li><a href="students-list.html">List</a></li>
-                        <li><a href="students-grid.html">Grid</a></li>
-                    </ul>
-                </li>
-                <li><a href="setting-edit-profile.html">Student Profile</a></li>
-                <li><a href="setting-student-security.html">Security</a></li>
-                <li><a href="setting-student-social-profile.html">Social profile</a></li>
-                <li><a href="setting-student-notification.html">Notification</a></li>
-                <li><a href="setting-student-privacy.html">Profile Privacy</a></li>
-                <li><a href="setting-student-accounts.html">Link Accounts</a></li>
-                <li><a href="setting-student-referral.html">Referal</a></li>
-                <li><a href="setting-student-subscription.html">Subscribtion</a></li>
-                <li><a href="setting-student-billing.html">Billing</a></li>
-                <li><a href="setting-student-payment.html">Payment</a></li>
-                <li><a href="setting-student-invoice.html">Invoice</a></li>
-                <li><a href="setting-support-tickets.html">Support Tickets</a></li>
-            </ul>
-        </li>
-        <li class="has-submenu">
-            <a href="">Pages <i class="fas fa-chevron-down"></i></a>
-            <ul class="submenu">
-                <li><a href="notifications.html">Notification</a></li>
-                <li><a href="pricing-plan.html">Pricing Plan</a></li>
-                <li><a href="wishlist.html">Wishlist</a></li>
-                <li class="has-submenu">
-                    <a href="course-list.html">Course</a>
-                    <ul class="submenu">
-                        <li><a href="add-course.html">Add Course</a></li>
-                        <li><a href="course-list.html">Course List</a></li>
-                        <li><a href="course-grid.html">Course Grid</a></li>
-                        <li><a href="course-details.html">Course Details</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="come-soon.html">Error</a>
-                    <ul class="submenu">
-                        <li><a href="come-soon.html">Comeing soon</a></li>
-                        <li><a href="error-404.html">404</a></li>
-                        <li><a href="error-500.html">500</a></li>
-                        <li><a href="under-construction.html">Under Construction</a></li>
-                    </ul>
-                </li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="support.html">Support</a></li>
-                <li><a href="job-category.html">Category</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="forgot-password.html">Forgot Password</a></li>
-            </ul>
-        </li>
-        <li class="has-submenu">
-            <a href="">Blog <i class="fas fa-chevron-down"></i></a>
-            <ul class="submenu">
-                <li><a href="blog-list.html">Blog List</a></li>
-                <li><a href="blog-grid.html">Blog Grid</a></li>
-                <li><a href="blog-masonry.html">Blog Masonry</a></li>
-                <li><a href="blog-modern.html">Blog Modern</a></li>
-                <li><a href="blog-details.html">Blog Details</a></li>
-            </ul>
-        </li>
-        <li class="login-link">
-            <a href="login.html">Login / Signup</a>
-        </li> *@
+   
     </ul>
 </div>
+</div>
+

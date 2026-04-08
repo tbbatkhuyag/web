@@ -14,7 +14,7 @@
                 <a class="btn btn-primary" href="~/NewsCats/createsub?sid=@Url.ActionContext.RouteData.Values["id"]">ДЭД КАТЕГОРИ</a>
             </div>
             <div class="col ">
-                @if (ViewData["txtype"].ToString() == "4")
+                @if (Model.Txttype == 4)
                 {
                     <div class="form-group">
                         <a class="btn btn-primary" href="~/NewsLists/index?sid=@Url.ActionContext.RouteData.Values["id"]">ЖАГСААЛТ АГУУЛГА ОРУУЛАХ</a>
@@ -22,7 +22,7 @@
 
                 }
           
-                @if (ViewData["txtype"].ToString() == "1")
+                @if (Model.Txttype == 1)
                 {
                     <div class="form-group">
                         <a class="btn btn-primary" href="~/NewsCats/HOME?sid=@Url.ActionContext.RouteData.Values["id"]">НҮҮР</a>
@@ -75,8 +75,8 @@ catch (Exception ex)
                 </select>
                 <span asp-validation-for="Vis" class="text-danger"></span>
             </div>
-            @try{
-                @if (ViewData["txtype"].ToString() == "3")
+            @try{ 
+            @if (Model.Txttype == 3)
                 {
                     <div class="form-group">
                         <label asp-for="Txtlink" class="control-label"></label>
@@ -85,14 +85,20 @@ catch (Exception ex)
                     </div>
 
                 }
-                @if (ViewData["txtype"].ToString() == "2")
+            }
+            catch (Exception ex)
+            {
+
+            }
+        @try{
+                if (Model.Txttype == 2)
                 {
                     <div class="form-group">
                         <label asp-for="Txtmore" class="control-label"></label>
-                     @*    <input asp-for="Txtmore" class="form-control" /> *@
+                        
 
                             @(Html.Kendo().Editor()
-                                .Name("Txtmore")
+                            .Name("Txtmore")
                                 .HtmlAttributes(new { style = "width: 100%; height:300px" })
                                 .StyleSheets(css => css
                                 .Add(Url.Content("~/shared/web/editor/editorStyles.css"))
@@ -117,9 +123,9 @@ catch (Exception ex)
                                 .Create("Create", "ImageBrowser")
                                 .Destroy("Destroy", "ImageBrowser")
                                 .Upload("Upload", "ImageBrowser")
-                            ).Value(ViewBag.Txtmore)
+                              ).Value(Model.Txtmore)
                                 )
-                        
+
 
 
                         <span asp-validation-for="Txtmore" class="text-danger"></span>
@@ -153,28 +159,29 @@ catch (Exception ex)
                             .Create("Create", "ImageBrowser")
                             .Destroy("Destroy", "ImageBrowser")
                             .Upload("Upload", "ImageBrowser")
-                            ).Value(ViewBag.Txtcontent)
+                            ).Value(Model.Txtcontent)
                             )
 
                         <span asp-validation-for="Txtcontent" class="text-danger"></span>
-                    </div>
+                    </div><br />
                 }
-              
+
             }catch(Exception ex){
 
             }
-           
-           
+
+
          @*    <div class="form-group">
                 <label asp-for="TxtDate" class="control-label"></label>
                 <input asp-for="TxtDate" class="form-control" />
                 <span asp-validation-for="TxtDate" class="text-danger"></span>
             </div> *@
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                        </form>                    
+            
+                </div>
 </div>
 
 <div>

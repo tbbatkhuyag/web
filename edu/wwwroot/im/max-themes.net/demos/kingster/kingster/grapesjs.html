@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GrapesJS Editor</title>
+  <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/grapesjs"></script>
+  <script src="https://unpkg.com/grapesjs-preset-webpage"></script>
+  <style>
+    body, html { height: 100%; margin: 0; overflow: hidden; }
+    #gjs { height: 100%; }
+  </style>
+</head>
+<body>
+  <div id="gjs"></div>
+  <script>
+    const editor = grapesjs.init({
+      container: '#gjs',
+      height: '100%',
+      width: '100%',
+      storageManager: false,
+      plugins: ['grapesjs-preset-webpage'],
+      pluginsOpts: {
+        'grapesjs-preset-webpage': {}
+      }
+    });
+
+    editor.Panels.addButton('options', {
+      id: 'save-db',
+      className: 'fa fa-save',
+      command: 'save-db',
+      attributes: { title: 'Save File' }
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const targetFileName = params.get('file') || 'index.html';
+
+    editor.Commands.add('save-db', {
+      run: function(editor, sender) {
+        sender && sender.set('active', 0);
+        var html = editor.getHtml();
+        var css = editor.getCss();
+        // Ensure the dynamic menu script is preserved
+        var finalHtml = `<!DOCTYPE html>\n<html lang="en">\n<head>\n${window.originalHead}\n<style>\n${css}</style>\n</head>\n<body>\n${html}\n<script src="js/dynamic-menu.js"><\/script>\n</body>\n</html>`;
+        
+        fetch('http://localhost:56948/api/editor/save?file=' + encodeURIComponent(targetFileName), {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: finalHtml
+        }).then(res => {
+          const msg = res.ok ? 'Successfully saved to ' + targetFileName + '!' : 'Failed to save file.';
+          const toast = document.createElement('div');
+          toast.textContent = msg;
+          toast.style.cssText = 'position:fixed; top:20px; left:50%; transform:translateX(-50%); background:#27ae60; color:#fff; padding:15px 30px; z-index:999999; border-radius:5px; font-weight:bold; box-shadow:0 4px 6px rgba(0,0,0,0.1); font-family:sans-serif; transition: opacity 0.5s;';
+          if (!res.ok) toast.style.background = '#c0392b';
+          document.body.appendChild(toast);
+          setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3000);
+        });
+      }
+    });
+
+    fetch(targetFileName, { cache: 'no-store' })
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        window.originalHead = doc.head.innerHTML; // Store original head
+        
+        // Extract and inject stylesheets
+        const links = doc.querySelectorAll('link[rel="stylesheet"], style');
+        links.forEach(el => {
+            editor.Canvas.getDocument().head.appendChild(el.cloneNode(true));
+        });
+
+        // Inject dynamic menu script into canvas
+        const script = document.createElement('script');
+        script.src = 'js/dynamic-menu.js';
+        editor.Canvas.getDocument().body.appendChild(script);
+
+        // Force AOS animated elements to be visible in the editor
+        const aosFix = document.createElement('style');
+        aosFix.innerHTML = '[data-aos] { opacity: 1 !important; transform: none !important; visibility: visible !important; }';
+        editor.Canvas.getDocument().head.appendChild(aosFix);
+
+        editor.setComponents(doc.body.innerHTML);
+      });
+  </script>
+</body>
+</html>

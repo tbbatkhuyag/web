@@ -146,7 +146,7 @@ namespace edu.Controllers
                 return NotFound();
             }
             var data = _context.NewsCats.FirstOrDefault(vs => vs.Id == id);
-            ViewData["txtype"] = data.Txttype;
+            ViewBag.txtype = data.Txttype;
         
             var newsCat = await _context.NewsCats.FindAsync(id);
             ViewBag.Txtcontent = HttpUtility.HtmlDecode(newsCat.Txtcontent);
