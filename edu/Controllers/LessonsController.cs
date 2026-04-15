@@ -9,7 +9,6 @@ using edu.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using System.Web;
-using Kendo.Mvc.Extensions;
 using System.Data;
 
 namespace edu.Controllers

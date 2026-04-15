@@ -1,6 +1,4 @@
 ﻿using edu.Models;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,20 +17,20 @@ namespace edu.Controllers
         //public static List<string> platforms = new List<string> { "Apple Podcasts", "Spotify", "Other", "Overcast", "Anchor", "Stitcher" };
         //public static List<string> devices = new List<string> { "iOS", "Android", "Other", "Web" };
       
-        //public ActionResult Podcasts_Read([DataSourceRequest] DataSourceRequest request)
+        //public ActionResult Podcasts_Read( )
         //{
 
-        //    var result = GetPodcasts().ToDataSourceResult(request);
+        //    var result = GetPodcasts().ToList();
         //    ViewData["test"] = result.AggregateResults;
         //    return Json(result);
         //}
 
-        //public ActionResult Downloads_Read([DataSourceRequest] DataSourceRequest request)
+        //public ActionResult Downloads_Read( )
         //{
         //    return Json(GetPodcasts());
         //}
 
-        //public ActionResult Devices_Read([DataSourceRequest] DataSourceRequest request)
+        //public ActionResult Devices_Read( )
         //{
         //    var deviceViews = GetPodcasts().GroupBy(x => x.Device)
         //                        .Select(x => new
@@ -43,7 +41,7 @@ namespace edu.Controllers
         //    return Json(deviceViews);
         //}
 
-        //public ActionResult Platforms_Read([DataSourceRequest] DataSourceRequest request)
+        //public ActionResult Platforms_Read( )
         //{
         //    var platformViews = GetPodcasts().GroupBy(x => x.PlatformName)
         //                        .Select(x => new

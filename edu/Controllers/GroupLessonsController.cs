@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using edu.Models;
 using System.Security.Claims;
-using Kendo.Mvc.Extensions;
 
 namespace edu.Controllers
 {

@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using edu.Models;
 using SQLitePCL;
 using System.Web;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
 
 
 namespace edu.Controllers
