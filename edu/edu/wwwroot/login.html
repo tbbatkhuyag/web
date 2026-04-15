@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in - Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Roboto', sans-serif; background: #f0f2f5; display: flex; align-items: center; justify-content: center; height: 100vh; color: #202124; }
+        .login-card { background: #fff; width: 100%; max-width: 448px; border-radius: 8px; padding: 48px 40px 36px; box-sizing: border-box; box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; }
+        .logo { font-size: 24px; font-weight: 500; color: #ea4335; margin-bottom: 16px; letter-spacing:-0.5px; }
+        .logo span:nth-child(1) { color: #4285f4; }
+        .logo span:nth-child(2) { color: #ea4335; }
+        .logo span:nth-child(3) { color: #fbbc05; }
+        .logo span:nth-child(4) { color: #4285f4; }
+        .logo span:nth-child(5) { color: #34a853; }
+        .logo span:nth-child(6) { color: #ea4335; }
+        h1 { margin: 0 0 8px; font-size: 24px; font-weight: 400; }
+        p.subtitle { margin: 0 0 32px; font-size: 16px; color: #202124; }
+        .input-group { width: 100%; margin-bottom: 16px; position: relative; }
+        .input-group input { width: 100%; padding: 13px 15px; box-sizing: border-box; border: 1px solid #dadce0; border-radius: 4px; font-size: 16px; outline: none; transition: border 0.2s; }
+        .input-group input:focus { border: 2px solid #1a73e8; padding: 12px 14px; }
+        .input-group label { position: absolute; left: 14px; top: 14px; color: #5f6368; font-size: 16px; transition: 0.2s ease all; pointer-events: none; background: #fff; padding: 0 4px; }
+        .input-group input:focus ~ label, .input-group input:not(:placeholder-shown) ~ label { top: -10px; font-size: 12px; color: #1a73e8; }
+        .error-msg { width: 100%; color: #d93025; font-size: 14px; display: none; margin-bottom: 16px; align-items: center; gap: 8px;}
+        .error-msg svg { fill: #d93025; width: 20px; }
+        .actions { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-top: 32px; }
+        .actions button { background: #1a73e8; color: #fff; border: none; padding: 0 24px; height: 36px; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s, box-shadow 0.2s; }
+        .actions button:hover { background: #1765cc; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+        .actions a { color: #1a73e8; text-decoration: none; font-size: 14px; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo">
+            <span>A</span><span>d</span><span>m</span><span>i</span><span>n</span>
+        </div>
+        <h1>Sign in</h1>
+        <p class="subtitle">to continue to Template Manager</p>
+        
+        <div id="errorBox" class="error-msg">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <span id="errorText">Invalid account</span>
+        </div>
+
+        <form id="loginForm" style="width:100%" onsubmit="handleLogin(event)">
+            <div class="input-group">
+                <input type="text" id="username" placeholder=" " required autofocus />
+                <label for="username">Username</label>
+            </div>
+            <div class="input-group" style="margin-bottom:8px;">
+                <input type="password" id="password" placeholder=" " required />
+                <label for="password">Password</label>
+            </div>
+            <div class="actions">
+                <a href="#">Forgot password?</a>
+                <button type="submit" id="btnSubmit">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        async function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            const btn = document.getElementById('btnSubmit');
+            const err = document.getElementById('errorBox');
+            
+            btn.disabled = true;
+            btn.textContent = 'Loading...';
+            err.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ username: u, password: p })
+                });
+                
+                if (res.ok) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const returnUrl = urlParams.get('returnUrl') || '/im/max-themes.net/demos/kingster/kingster/manager.html';
+                    window.location.href = returnUrl;
+                } else {
+                    err.style.display = 'flex';
+                    document.getElementById('errorText').textContent = 'Буруу нэр эсвэл нууц үг';
+                }
+            } catch(ex) {
+                err.style.display = 'flex';
+                document.getElementById('errorText').textContent = 'Сервертэй холбогдоход алдаа гарлаа';
+            }
+            btn.disabled = false;
+            btn.textContent = 'Next';
+        }
+    </script>
+</body>
+</html>

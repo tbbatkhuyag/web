@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Template Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            overflow: hidden;
+            background: #fff;
+            color: #202124;
+        }
+
+        .sidebar {
+            width: 340px;
+            min-width: 340px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #dadce0;
+            z-index: 10;
+            transition: margin-left 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .sidebar.collapsed {
+            margin-left: -340px;
+        }
+
+        #floatingToggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 5;
+            background: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5f6368;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+        }
+
+        #floatingToggle:hover {
+            background: #f8f9fa;
+            color: #1a73e8;
+            transform: scale(1.05);
+        }
+
+        #floatingToggle.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar header {
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            border-bottom: 1px solid #dadce0;
+        }
+
+        .sidebar h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 400;
+            color: #202124;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .node-content.selected { background: #e8f0fe !important; border-left: 3px solid #1a73e8; }
+        .node-content.selected .node-name { font-weight: 500; color: #1a73e8; }
+        .sidebar-title-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .collapse-btn {
+            cursor: pointer;
+            color: #5f6368;
+            font-size: 24px;
+            transition: color 0.2s;
+        }
+
+        .collapse-btn:hover {
+            color: #1a73e8;
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 8px;
+            background: #f1f3f4;
+            border-radius: 24px;
+            padding: 4px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            background: transparent;
+            color: #5f6368;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .mode-btn.active {
+            background: #fff;
+            color: #1a73e8;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-btn .material-symbols-outlined {
+            font-size: 18px;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container .material-symbols-outlined {
+            position: absolute;
+            left: 16px;
+            color: #5f6368;
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border: 1px solid transparent;
+            border-radius: 24px;
+            outline: none;
+            background: #f1f3f4;
+            color: #202124;
+            font-size: 14px;
+            transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+        }
+
+        .search-box:focus {
+            background: #fff;
+            border: 1px solid #dadce0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box::placeholder {
+            color: #5f6368;
+        }
+
+        .tree-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 0;
+        }
+
+        .tree-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .tree-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .tree-container::-webkit-scrollbar-thumb {
+            background-color: #dadce0;
+            border-radius: 4px;
+        }
+
+        ul.tree-root,
+        ul.children {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.children {
+            margin-left: 24px;
+        }
+
+        .tree-node {
+            margin-bottom: 2px;
+        }
+
+        .node-content {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            margin: 0 12px;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: background 0.15s;
+            position: relative;
+            color: #3c4043;
+            min-height: 40px;
+        }
+
+        .node-content:hover {
+            background: #f1f3f4;
+        }
+
+        .node-content.drag-over {
+            background: #e8f0fe !important;
+            border: 1px solid #1a73e8;
+        }
+
+        .node-content.drag-above {
+            box-shadow: 0 -2px 0 0 #1a73e8;
+            border-radius: 0;
+        }
+
+        .node-content.drag-below {
+            box-shadow: 0 2px 0 0 #1a73e8;
+            border-radius: 0;
+        }
+
+        .node-content.active {
+            background: #e8f0fe;
+            color: #1a73e8;
+        }
+
+        .node-content.active .node-name {
+            font-weight: 500;
+        }
+
+        .node-content.active .toggle-icon,
+        .node-content.active .file-icon,
+        .node-content.active .drag-handle {
+            color: #1a73e8;
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            color: #5f6368;
+            width: 20px;
+            font-size: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 4px;
+            transition: transform 0.2s;
+            user-select: none;
+        }
+
+        .collapsed>.children {
+            display: none;
+        }
+
+        .collapsed>.node-content .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .drag-handle {
+            cursor: grab;
+            margin-right: 4px;
+            color: #bdc1c6;
+            font-size: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drag-handle:hover {
+            color: #5f6368;
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+            color: #1a73e8;
+        }
+
+        .file-icon {
+            font-size: 20px;
+            color: #5f6368;
+            margin-right: 12px;
+            display: inline-flex;
+        }
+
+        .node-name {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+        }
+
+        .actions {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 0.15s forwards;
+        }
+
+        .node-content:hover .actions {
+            display: flex;
+            opacity: 1;
+            gap: 4px;
+        }
+
+        .actions button {
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #5f6368;
+            padding: 0;
+        }
+
+        .actions button .material-symbols-outlined {
+            font-size: 18px;
+        }
+
+        .actions button:hover {
+            background: rgba(95, 99, 104, 0.1);
+            color: #202124;
+        }
+
+        .actions button.delete-btn:hover {
+            color: #d93025;
+            background: rgba(217, 48, 37, 0.1);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .editor-container {
+            flex: 1;
+            height: 100vh;
+            width: 100%;
+            border: none;
+            background: #f8f9fa;
+        }
+
+        #modalOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(32, 33, 36, 0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-box {
+            background: #fff;
+            padding: 24px;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .modal-box h3 {
+            margin: 0 0 16px 0;
+            color: #202124;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .modal-box input {
+            width: 100%;
+            padding: 10px 14px;
+            margin-bottom: 24px;
+            box-sizing: border-box;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .modal-box input:focus {
+            border: 2px solid #1a73e8;
+            padding: 9px 13px;
+        }
+
+        .modal-btn-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .modal-btn-row button {
+            padding: 0 24px;
+            height: 36px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .modal-box #modalCancel {
+            background: transparent;
+            color: #1a73e8;
+        }
+
+        .modal-box #modalCancel:hover {
+            background: rgba(26, 115, 232, 0.04);
+        }
+
+        .modal-box #modalConfirm {
+            background: #1a73e8;
+            color: #fff;
+        }
+
+        .modal-box #modalConfirm:hover {
+            background: #1765cc;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <button id="floatingToggle" onclick="toggleSidebar()" title="Open Sidebar">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+
+    <div class="sidebar" id="appSidebar">
+        <header>
+            <h2>
+                <div class="sidebar-title-left">
+                    <span class="material-symbols-outlined" style="color:#1a73e8;">folder_managed</span> Admin
+                </div>
+                <div style="display:flex; align-items:center;">
+                    <span class="material-symbols-outlined collapse-btn" onclick="logout()" title="Logout" style="margin-right:8px; font-size: 22px;">logout</span>
+                    <span class="material-symbols-outlined collapse-btn" onclick="toggleSidebar()" title="Close Sidebar">menu_open</span>
+                </div>
+            </h2>
+            <div class="mode-toggle">
+                <button id="btnPreview" class="mode-btn active" onclick="setMode('preview')">
+                    <span class="material-symbols-outlined">visibility</span> Харах
+                </button>
+                <button id="btnEdit" class="mode-btn" onclick="setMode('edit')">
+                    <span class="material-symbols-outlined">edit</span> Засах
+                </button>
+            </div>
+            <div class="search-container">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" id="searchBox" class="search-box" placeholder="Хайх..." oninput="filterTree()">
+            </div>
+        </header>
+        <div class="tree-container">
+            <ul id="fileTree" class="tree-root"></ul>
+        </div>
+    </div>
+    <iframe name="editorFrame" class="editor-container" src="" id="editorFrame"></iframe>
+
+    <div id="modalOverlay">
+        <div class="modal-box">
+            <h3 id="modalTitle"></h3>
+            <input type="text" id="modalInput">
+            <div class="modal-btn-row">
+                <button id="modalCancel">Cancel</button>
+                <button id="modalConfirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let treeData = [];
+        let selectedNodes = new Set();
+        let draggedItems = [];
+        let dropZone = null;  // 'before', 'after', 'inside'
+        let activeFile = null;
+
+        function showModal(title, showInput, defaultValue, callback) {
+            const overlay = document.getElementById('modalOverlay');
+            document.getElementById('modalTitle').textContent = title;
+            const input = document.getElementById('modalInput');
+            const btnCancel = document.getElementById('modalCancel');
+            const btnConfirm = document.getElementById('modalConfirm');
+
+            btnCancel.style.display = 'block';
+            btnConfirm.textContent = 'Confirm';
+
+            if (showInput) {
+                input.style.display = 'block';
+                input.value = defaultValue;
+                input.focus();
+            } else {
+                input.style.display = 'none';
+            }
+            overlay.style.display = 'flex';
+
+            btnConfirm.onclick = () => { overlay.style.display = 'none'; callback(true, input.value); };
+            btnCancel.onclick = () => { overlay.style.display = 'none'; callback(false, null); };
+        }
+
+        function customAlert(msg) {
+            showModal(msg, false, '', (c) => { });
+            document.getElementById('modalCancel').style.display = 'none';
+            document.getElementById('modalConfirm').textContent = 'OK';
+        }
+
+        function deepFilterFiles(nodes) {
+            return nodes.filter(n => {
+                if (n.id === 'manager.html' || n.id === 'grapesjs.html') return false;
+                if (n.children) n.children = deepFilterFiles(n.children);
+                return true;
+            });
+        }
+
+        async function init() {
+            try {
+                const res = await fetch('/api/editor/files');
+                treeData = await res.json();
+                treeData = deepFilterFiles(treeData);
+                renderAll();
+                if (treeData.length > 0) openFile(treeData[0].id);
+            } catch (err) {
+                document.getElementById('fileTree').innerHTML = '<li style="padding: 20px; color: #e74c3c; text-align:center;">Failed to load data. Is the backend server running?</li>';
+            }
+        }
+
+        function renderAll() {
+            const root = document.getElementById('fileTree');
+            renderNodes(treeData, root);
+        }
+
+        function renderNodes(nodes, parentEl) {
+            parentEl.innerHTML = '';
+            nodes.forEach(node => {
+                const li = document.createElement('li');
+                li.className = 'tree-node' + (node.isCollapsed ? ' collapsed' : '');
+                li.dataset.nodeId = node.id;
+
+                const nodeContent = document.createElement('div');
+                nodeContent.className = 'node-content' + (activeFile === node.id ? ' active' : '') + (selectedNodes.has(node.id) ? ' selected' : '');
+                
+                nodeContent.onclick = (e) => {
+                    if (e.target.closest('.actions') || e.target.classList.contains('toggle-icon') || e.target.classList.contains('drag-handle')) return;
+                    if (e.shiftKey || e.metaKey || e.ctrlKey) {
+                        if (selectedNodes.has(node.id)) selectedNodes.delete(node.id);
+                        else selectedNodes.add(node.id);
+                    } else {
+                        selectedNodes.clear();
+                        selectedNodes.add(node.id);
+                        openFile(node.id);
+                    }
+                    renderAll();
+                };
+
+                const hasChildren = node.children && node.children.length > 0;
+                const toggleHtml = hasChildren ? `<span class="material-symbols-outlined toggle-icon" onclick="toggleNode(event, '${node.id}')">arrow_drop_down</span>` : `<span class="material-symbols-outlined toggle-icon" style="visibility:hidden;">arrow_drop_down</span>`;
+                const fileIcon = (node.children || hasChildren) ? 'folder' : 'description';
+
+                nodeContent.innerHTML = `
+                    <span class="material-symbols-outlined drag-handle" draggable="true" title="Drag to move">drag_indicator</span>
+                    ${toggleHtml}
+                    <span class="material-symbols-outlined file-icon">${fileIcon}</span>
+                    <span class="node-name">${node.text}</span>
+                    <div class="actions">
+                        <button onclick="openEditor('${node.id}')" title="Edit in GrapesJS"><span class="material-symbols-outlined">edit</span></button>
+                        <button onclick="renameFile('${node.id}')" title="Rename"><span class="material-symbols-outlined">drive_file_rename_outline</span></button>
+                        <button onclick="duplicateFile('${node.id}')" title="Duplicate"><span class="material-symbols-outlined">content_copy</span></button>
+                        <button onclick="deleteFile('${node.id}')" title="Delete" class="delete-btn"><span class="material-symbols-outlined">delete</span></button>
+                    </div>
+                `;
+
+                const handle = nodeContent.querySelector('.drag-handle');
+                handle.setAttribute('draggable', 'true');
+                handle.ondragstart = (e) => {
+                    if (!selectedNodes.has(node.id)) {
+                        selectedNodes.clear();
+                        selectedNodes.add(node.id);
+                        document.querySelectorAll('.node-content').forEach(el => el.classList.remove('selected'));
+                        nodeContent.classList.add('selected');
+                    }
+                    draggedItems = Array.from(selectedNodes).map(id => findNode(treeData, id)).filter(x => x);
+                    dropZone = null;
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/plain', 'multi');
+                    setTimeout(() => document.querySelectorAll('.node-content.selected').forEach(el => el.style.opacity = '0.4'), 0);
+                };
+                handle.ondragend = (e) => {
+                    document.querySelectorAll('.node-content.selected').forEach(el => el.style.opacity = '');
+                    document.querySelectorAll('.node-content').forEach(el => {
+                        el.classList.remove('drag-over', 'drag-above', 'drag-below');
+                    });
+                    draggedItems = [];
+                    dropZone = null;
+                };
+
+                nodeContent.ondragover = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (!draggedItems || draggedItems.length === 0 || draggedItems.find(x => x.id === node.id)) return;
+                    // Clear all indicators first
+                    document.querySelectorAll('.node-content').forEach(el => el.classList.remove('drag-over', 'drag-above', 'drag-below'));
+                    const rect = nodeContent.getBoundingClientRect();
+                    const relY = e.clientY - rect.top;
+                    if (relY < rect.height * 0.3) {
+                        dropZone = 'before';
+                        nodeContent.classList.add('drag-above');
+                    } else if (relY > rect.height * 0.7) {
+                        dropZone = 'after';
+                        nodeContent.classList.add('drag-below');
+                    } else {
+                        dropZone = 'inside';
+                        nodeContent.classList.add('drag-over');
+                    }
+                    e.dataTransfer.dropEffect = 'move';
+                };
+                nodeContent.ondragleave = (e) => {
+                    // Only clear if leaving to something totally outside this node subtree
+                    if (!nodeContent.contains(e.relatedTarget)) {
+                        nodeContent.classList.remove('drag-over', 'drag-above', 'drag-below');
+                    }
+                };
+                nodeContent.ondrop = async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    nodeContent.classList.remove('drag-over', 'drag-above', 'drag-below');
+                    if (draggedItems.length > 0 && !draggedItems.find(x => x.id === node.id) && dropZone) {
+                        if (dropZone === 'inside' && !node.children) node.children = [];
+                        moveNodes(treeData, draggedItems.map(x => x.id), node.id, dropZone);
+                        draggedItems = [];
+                        dropZone = null;
+                        renderAll();
+                        await saveTree(true);
+                    }
+                };
+
+                li.appendChild(nodeContent);
+
+                const childrenUl = document.createElement('ul');
+                childrenUl.className = 'children';
+                li.appendChild(childrenUl);
+
+                if (node.children && node.children.length > 0) {
+                    renderNodes(node.children, childrenUl);
+                }
+
+                parentEl.appendChild(li);
+            });
+
+            if (parentEl.id === 'fileTree') {
+                const container = document.querySelector('.tree-container');
+                container.ondragover = (e) => e.preventDefault();
+                container.ondrop = async (e) => {
+                    e.preventDefault();
+                    if (draggedItems.length > 0) {
+                        const isTop = e.clientY < 180;
+                        moveNodes(treeData, draggedItems.map(x => x.id), null, isTop ? 'top' : 'bottom');
+                        renderAll();
+                        await saveTree(true);
+                    }
+                };
+            }
+        }
+
+        function moveNodes(tree, draggedIds, targetId, position = 'inside') {
+            let extractedNodes = [];
+            for (let id of draggedIds) {
+                let ex = removeNode(tree, id);
+                if (ex) extractedNodes.push(ex);
+            }
+            if (extractedNodes.length === 0) return;
+
+            if (targetId === null) {
+                if (position === 'top') {
+                    tree.unshift(...extractedNodes);
+                } else {
+                    tree.push(...extractedNodes);
+                }
+            } else {
+                insertNodesPosition(tree, targetId, extractedNodes, position);
+            }
+        }
+
+        function removeNode(nodes, id) {
+            for (let i = 0; i < nodes.length; i++) {
+                if (nodes[i].id === id) { return nodes.splice(i, 1)[0]; }
+                if (nodes[i].children) {
+                    let result = removeNode(nodes[i].children, id);
+                    if (result) return result;
+                }
+            }
+            return null;
+        }
+
+        function findNode(nodes, id) {
+            for (let n of nodes) {
+                if (n.id === id) return n;
+                if (n.children) {
+                    let found = findNode(n.children, id);
+                    if (found) return found;
+                }
+            }
+            return null;
+        }
+
+        function toggleNode(event, id) {
+            event.stopPropagation();
+            const node = findNode(treeData, id);
+            if (node) {
+                node.isCollapsed = !node.isCollapsed;
+                renderAll();
+                saveTree(false);
+            }
+        }
+
+        function insertNodesPosition(nodes, targetId, movingNodes, position) {
+            for (let i = 0; i < nodes.length; i++) {
+                if (nodes[i].id === targetId) {
+                    if (position === 'inside') {
+                        nodes[i].children = nodes[i].children || [];
+                        nodes[i].children.push(...movingNodes);
+                    } else if (position === 'before') {
+                        nodes.splice(i, 0, ...movingNodes);
+                    } else if (position === 'after') {
+                        nodes.splice(i + 1, 0, ...movingNodes);
+                    }
+                    return true;
+                }
+                if (nodes[i].children) {
+                    if (insertNodesPosition(nodes[i].children, targetId, movingNodes, position)) return true;
+                }
+            }
+            return false;
+        }
+
+        async function saveTree(reloadIframe = false) {
+            document.body.style.cursor = 'wait';
+            await fetch('/api/editor/tree', {
+                method: 'POST',
+                body: JSON.stringify(treeData),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            document.body.style.cursor = 'default';
+            if (reloadIframe && activeFile) openFile(activeFile);
+        }
+
+        let currentMode = 'preview';
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.getElementById('btnPreview').classList.toggle('active', mode === 'preview');
+            document.getElementById('btnEdit').classList.toggle('active', mode === 'edit');
+            if (activeFile) openFile(activeFile);
+        }
+
+        function openFile(id) {
+            activeFile = id;
+            if (currentMode === 'edit') {
+                document.getElementById('editorFrame').src = 'grapesjs.html?file=' + encodeURIComponent(id);
+            } else {
+                document.getElementById('editorFrame').src = id + '?t=' + Date.now();
+            }
+            renderAll();
+        }
+
+        function openEditor(id) {
+            activeFile = id;
+            currentMode = 'edit';
+            document.getElementById('btnPreview').classList.remove('active');
+            document.getElementById('btnEdit').classList.add('active');
+            document.getElementById('editorFrame').src = 'grapesjs.html?file=' + encodeURIComponent(id);
+            renderAll();
+        }
+
+        function renameFile(id) {
+            showModal('Enter new file name:', true, id, async (confirmed, newName) => {
+                if (!confirmed || !newName || newName === id) return;
+                if (!newName.toLowerCase().endsWith('.html')) newName += '.html';
+
+                const res = await fetch('/api/editor/files/rename', {
+                    method: 'POST',
+                    body: JSON.stringify({ oldName: id, newName: newName }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                if (res.ok) {
+                    renameInTree(treeData, id, newName);
+                    renderAll();
+                    if (activeFile === id) activeFile = newName;
+                    await saveTree(true);
+                } else customAlert('Failed to rename file.');
+            });
+        }
+
+        function renameInTree(nodes, id, newName) {
+            for (let n of nodes) {
+                if (n.id === id) { n.id = newName; n.text = newName; return true; }
+                if (n.children) renameInTree(n.children, id, newName);
+            }
+        }
+
+        async function duplicateFile(id) {
+            const res = await fetch('/api/editor/files/duplicate', {
+                method: 'POST',
+                body: JSON.stringify({ file: id }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                const newNode = { id: data.newId, text: data.newId, children: [] };
+                addAfter(treeData, id, newNode);
+                renderAll();
+                await saveTree(true);
+            } else customAlert('Failed to duplicate file.');
+        }
+
+        function addAfter(nodes, id, newNode) {
+            for (let i = 0; i < nodes.length; i++) {
+                if (nodes[i].id === id) { nodes.splice(i + 1, 0, newNode); return true; }
+                if (nodes[i].children && addAfter(nodes[i].children, id, newNode)) return true;
+            }
+            return false;
+        }
+
+        function deleteFile(id) {
+            showModal(`Are you extremely sure you want to permanently delete '${id}'?`, false, '', async (confirmed) => {
+                if (!confirmed) return;
+                const res = await fetch('/api/editor/files?file=' + encodeURIComponent(id), { method: 'DELETE' });
+                if (res.ok) {
+                    removeNode(treeData, id);
+                    if (activeFile === id) {
+                        activeFile = null;
+                        document.getElementById('editorFrame').src = '';
+                    }
+                    renderAll();
+                    await saveTree(true);
+                } else customAlert('Failed to delete file.');
+            });
+        }
+
+        function filterTree() {
+            const term = document.getElementById('searchBox').value.toLowerCase();
+            document.querySelectorAll('.tree-node').forEach(li => {
+                const content = li.querySelector('.node-content');
+                const name = content.querySelector('.node-name').textContent.toLowerCase();
+
+                // Show if it matches search, OR if search is empty
+                if (name.includes(term)) {
+                    li.style.display = '';
+                    // Need to also show all parents so nested ones are visible
+                    let parentUl = li.parentElement;
+                    while (parentUl && parentUl.classList.contains('children')) {
+                        parentUl.parentElement.style.display = '';
+                        parentUl = parentUl.parentElement.parentElement;
+                    }
+                } else {
+                    li.style.display = 'none';
+                }
+            });
+
+            // Re-show all if query empty
+            if (term.length === 0) {
+                document.querySelectorAll('.tree-node').forEach(li => li.style.display = '');
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('appSidebar');
+            const toggle = document.getElementById('floatingToggle');
+            if (sidebar.classList.contains('collapsed')) {
+                sidebar.classList.remove('collapsed');
+                toggle.classList.remove('show');
+            } else {
+                sidebar.classList.add('collapsed');
+                toggle.classList.add('show');
+            }
+        }
+
+        async function logout() {
+            if(confirm('Гарахдаа итгэлтэй байна уу?')) {
+                await fetch('/api/logout', { method: 'POST' });
+                window.location.href = '/login.html';
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

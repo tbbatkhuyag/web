@@ -1,0 +1,145 @@
+﻿
+@using Microsoft.EntityFrameworkCore
+@using edu.Models
+@inject edu_portal_dbContext Contex
+
+
+<div class="kingster-navigation kingster-item-pdlr clearfix ">
+    <div class="kingster-main-menu" id="kingster-main-menu">
+    <ul id="menu-main-navigation-1" class="sf-menu">
+
+        @foreach (var item in Contex.NewsCats.ToList().Where(vs=>vs.SubId==null&&vs.Vis==2).OrderBy(vs=>vs.TxtOrd))
+        {
+
+                <li  class="menu-item menu-item-has-children kingster-normal-menu">
+                @if(item.Txttype==1)
+                {
+                    <a href="/" class="sf-with-ul-pre">@item.Txtname
+                        </a>
+                }
+                else
+                {
+                    @if (item.Txttype == 2)
+                    {
+                        <a href="/NewsCats/read/@item.Id" class="sf-with-ul-pre">
+                            @item.Txtname
+                        </a>
+                        }
+                        else
+                        {
+                            @if (item.Txttype == 3)
+                            {
+                            <a href="@item.Txtlink">@item.Txtname </a>
+
+                            }
+                            else
+                            {
+                                @if (item.Txttype == 4)
+                                {
+                                <a href="/NewsLists/list/@item.Id">
+                                        @item.Txtname
+                                    
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="">
+                                        @item.Txtname
+                                      
+                                    </a>
+                                }
+
+                            }
+
+                    }
+                   
+                }
+                        
+                 <ul class="sub-menu">
+
+                @foreach (var it in Contex.NewsCats.ToList().Where(vs => vs.Vis == 2).OrderBy(vs => vs.TxtOrd))
+                {
+                    @if (it.SubId == item.Id)
+                    {
+                       
+                            @if (it.Txttype == 1)
+                            {
+                             <li  class="menu-item" >  <a href="/">
+                                    @it.Txtname
+                                    <i class="fas fa-chevron-down"></i>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                @if (it.Txttype == 2)
+                                {
+                                    <li class="menu-item" >
+                                        <a href="/NewsCats/read/@it.Id">
+                                        @it.Txtname
+                                        <i class="fas fa-chevron-down"></i>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    @if (it.Txttype == 3)
+                                    {
+                                        <li class="menu-item" ><a href="@it.Txtlink">@it.Txtname <i class="fas fa-chevron-down"></i></a></li>
+
+                                    }
+                                    else
+                                    {
+                                        @if (it.Txttype == 4)
+                                        {
+                                            <li class="menu-item" >
+                                                <a href="/NewsLists/list/@it.Id">
+                                                @it.Txtname
+                                                <i class="fas fa-chevron-down"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="menu-item" ><a href="">
+                                                @it.Txtname
+                                                <i class="fas fa-chevron-down"></i>
+                                                </a>
+                                            </li>
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+
+                            @*  @foreach (var its in Contex.NewsCats.ToList().Where(vs => vs.Vis == 1).OrderBy(vs => vs.TxtOrd))
+                            {
+                                @if (its.SubId == it.Id)
+                                {
+                                    <ul class="submenu">
+                                        <li><a href="instructor-dashboard.html">@it.Txtname</a></li>
+
+                                    </ul>
+
+                                }
+                            } *@
+                        
+                    }
+                }
+                </ul>
+
+            </li>
+
+        }
+
+
+
+
+   
+    </ul>
+</div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using edu.Models
+@inject edu_portal_dbContext Contex
+
+@foreach (var todo in Contex.NewsCats.Where(vs=>vs.SubId==null).OrderBy(vs=>vs.TxtOrd))
+{
+    <li >
+        <a href="/NewsCats/Edit/@todo.Id">
+        <i class="ft-home"></i>
+            <span class="menu-title">@todo.Txtname</span>
+    </a>
+        <ul>
+            @foreach (var to in Contex.NewsCats.Where(vs => vs.SubId == todo.Id).OrderBy(vs => vs.TxtOrd))
+            {
+
+                <li >
+                <a href="/NewsCats/Edit/@to.Id">
+                    <span class="menu-title" >@to.Txtname</span>
+                </a>
+                    <ul >
+
+
+                        @foreach (var t in Contex.NewsCats.Where(vs => vs.SubId == to.Id).OrderBy(vs => vs.TxtOrd))
+                        {
+
+                            <li >
+                                <a href="/NewsCats/Edit/@t.Id">
+                                    <span class="menu-title">@t.Txtname</span>
+                                </a>
+
+                            </li>
+                        }
+                    </ul>
+            </li>
+            }
+        </ul>
+    </li>
+}
+
+@code {
+
+  
+        
+   
+ 
+}
+
+
+
